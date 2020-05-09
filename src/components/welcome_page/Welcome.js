@@ -11,8 +11,17 @@ class Welcome extends React.Component {
  */
   render() {
     return (
-      <div className="link_buttons">
-        <MainButton href="#Top" className="link fish" text="fish" />
+      <div className="welcome_page">
+        <div className="welcome_text">
+          <h2>Welcome to Yummie</h2>
+          <p>Your favourite Recipe App</p>
+        </div>
+        <div className="link_buttons">
+          <MainButton link="#Top" className="fish" text="fish" />
+          <MainButton link="#Top" className="link meat" text="meat" />
+          <MainButton link="#Top" className="link veggie" text="veggie" />
+          <MainButton link="#Top" className="link desert" text="desert" />
+        </div>
       </div>
     );
   }
@@ -21,7 +30,9 @@ class Welcome extends React.Component {
 const MainButton = (props) => {
   return (
     <div>
-      <a>{this.props.text}</a>
+      <a className={props.className} href={props.link}>
+        {props.text}
+      </a>
     </div>
   );
 };

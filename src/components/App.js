@@ -9,8 +9,9 @@ class App extends React.Component {
       <div className="ui container">
         <Topline />
         <div className="main">
-          <div className="white_container"></div>
-          <Welcome />
+          <div className="white_container">
+            <Welcome />
+          </div>
         </div>
         <footer className="footer">Impressum</footer>
       </div>
