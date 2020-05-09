@@ -1,0 +1,76 @@
+@import "../var";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.ui {
+  background-color: map-get($colors, $key: main-white);
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+
+  @include desktop {
+    display: grid;
+    grid-template-columns: 22% 26% 26% 26%;
+    grid-template-rows: 15% 70% 15%;
+  }
+}
+
+.sidebar {
+  @include desktop {
+    grid-column: 1;
+  }
+}
+
+.footer {
+  @include desktop {
+    grid-column: 1 / span 4;
+    grid-row: 3;
+  }
+
+  background-color: #5c2626;
+  color: antiquewhite;
+}
+
+.main {
+  @include desktop {
+    grid-row: 2;
+    grid-column: 2 / span 3;
+  }
+  background-image: url("../img/background.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  opacity: 0.7;
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+  padding: 1rem;
+}
+
+.white_container {
+  width: 90vw;
+  height: 100%;
+  opacity: 0.7;
+  z-index: 2;
+  background-color: white;
+  padding: 1rem;
+  margin: 0 auto;
+  border-radius: 10px;
+  overflow: scroll;
+}

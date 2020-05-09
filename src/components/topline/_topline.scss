@@ -1,0 +1,38 @@
+@import "../../var";
+
+.topline-container {
+  padding: 0.4rem;
+}
+
+.topline {
+  color: map-get($colors, main-brown);
+  background-color: map-get($colors, main-white);
+  display: flex;
+  justify-content: space-between;
+  @include desktop {
+    grid-column: 1 / span 4;
+  }
+}
+
+h1 {
+  margin: 0;
+}
+
+.bar1,
+.bar2,
+.bar3 {
+  width: 35px;
+  height: 5px;
+  background-color: map-get($colors, $key: main-brown);
+  margin: 6px 0;
+  transition: 0.4s;
+}
+
+.searchbtn {
+  width: 35px;
+  height: 35px;
+  background-image: url("./search.png");
+  background-size: cover;
+  border: none;
+  background-color: inherit;
+}

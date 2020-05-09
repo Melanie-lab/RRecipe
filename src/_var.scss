@@ -1,0 +1,25 @@
+$colors: (
+  main-brown: #5c2626,
+  main-white: #f7efef,
+  main-black: #280808,
+);
+
+$fontsizes: (
+  main-text: 1rem,
+  yummie: 1.75rem,
+);
+
+$tablet-width: 768px;
+$desktop-width: 1024px;
+
+@mixin tablet {
+  @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width -1 px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}
