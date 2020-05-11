@@ -3,7 +3,12 @@
   flex-direction: column;
 }
 
-link {
+.link_buttons a {
   padding: 1rem;
   margin: 1rem;
+  height: 40px;
+  width: 40px;
+  border: 1px solid red;
+  border-radius: 50%;
+  text-decoration: none;
 }

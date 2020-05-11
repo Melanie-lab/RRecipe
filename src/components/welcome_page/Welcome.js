@@ -17,10 +17,12 @@ class Welcome extends React.Component {
           <p>Your favourite Recipe App</p>
         </div>
         <div className="link_buttons">
-          <MainButton link="#Top" className="fish" text="fish" />
-          <MainButton link="#Top" className="link meat" text="meat" />
+          <MainButton link="#Top" className="link fish" text="fish" />
+          <MainButton link="#Top" className="link meat" text="desert" />
           <MainButton link="#Top" className="link veggie" text="veggie" />
-          <MainButton link="#Top" className="link desert" text="desert" />
+          <MainButton link="#Top" className="link Arabic" text="Arabic" />
+          <MainButton link="#Top" className="link Persian" text="Persian" />
+          <MainButton link="#Top" className="link Indian" text="Indian" />
         </div>
       </div>
     );
@@ -29,11 +31,9 @@ class Welcome extends React.Component {
 
 const MainButton = (props) => {
   return (
-    <div>
-      <a className={props.className} href={props.link}>
-        {props.text}
-      </a>
-    </div>
+    <a className={props.className} href={props.link}>
+      {props.text}
+    </a>
   );
 };
 

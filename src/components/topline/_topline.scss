@@ -31,8 +31,12 @@ h1 {
 .searchbtn {
   width: 35px;
   height: 35px;
-  background-image: url("./search.png");
+  background-image: url("./searchbar/search.png");
   background-size: cover;
   border: none;
   background-color: inherit;
+}
+
+.searchbar {
+  display: none;
 }

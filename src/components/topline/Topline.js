@@ -1,17 +1,16 @@
 import React from "react";
 import "./_topline.scss";
+import Searchbar from "./searchbar/Searchbar";
+import Navbar from "../navbar/Navbar";
 
-const Topline = () => {
+const Topline = (props) => {
   return (
     <div className="topline-container">
       <header className="topline">
-        <div className="menu" role="link" aria-label="menu">
-          <div className="bar1" aria-hidden="true"></div>
-          <div className="bar1" aria-hidden="true"></div>
-          <div className="bar1" aria-hidden="true"></div>
-        </div>
+        <Navbar />
         <h1>Yummie</h1>
-        <button className="searchbtn"></button>
+        <button className="searchbtn" onClick={props.onMagnifierClick}></button>
+        <Searchbar role="link" aria-label="search" />
       </header>
     </div>
   );
