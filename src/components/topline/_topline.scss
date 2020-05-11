@@ -9,6 +9,8 @@
   background-color: map-get($colors, main-white);
   display: flex;
   justify-content: space-between;
+  font-family: "Oregano";
+  margin: 0 0.5rem;
   @include desktop {
     grid-column: 1 / span 4;
   }
@@ -35,8 +37,4 @@ h1 {
   background-size: cover;
   border: none;
   background-color: inherit;
-}
-
-.searchbar {
-  display: none;
 }

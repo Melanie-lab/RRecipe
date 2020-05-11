@@ -10,10 +10,13 @@ const AllRecipes = () => {
   ));
 };
 
-const Recipe = ({ name, description }) => (
+const Recipe = ({ name, image }) => (
   <div>
     <p className="name">{name}</p>
-    <p className="description">{description}</p>
+    <figure>
+      <img scr={image} alt="{name}" />
+    </figure>
+    <p className="description"></p>
   </div>
 );
 

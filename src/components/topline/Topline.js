@@ -10,8 +10,8 @@ const Topline = (props) => {
         <Navbar />
         <h1>Yummie</h1>
         <button className="searchbtn" onClick={props.onMagnifierClick}></button>
-        <Searchbar role="link" aria-label="search" />
       </header>
+      <Searchbar role="link" aria-label="search" />
     </div>
   );
 };

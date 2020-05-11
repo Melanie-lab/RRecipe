@@ -3,6 +3,7 @@ import Topline from "./topline/Topline";
 import "./_app.scss";
 import Welcome from "./welcome_page/Welcome";
 import AllRecipes from "./allrecipes//Allrecipes";
+import Newrecipe from "./addrecipe/Newrecipe";
 
 class App extends React.Component {
   render() {
@@ -12,7 +13,10 @@ class App extends React.Component {
         <div className="main">
           <div className="white_container">
             <Welcome />
+            <hr />
+            <h2>Recipes:</h2>
             <AllRecipes />
+            <Newrecipe />
           </div>
         </div>
         <footer className="footer">Impressum</footer>

@@ -1,0 +1,30 @@
+@import "../../var";
+
+.new_recipe_container {
+  border-radius: 10px;
+  border: 1px solid map-get($colors, main-black);
+  padding: 0.5rem 1rem;
+}
+
+.new_recipe_form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input_field {
+  margin: 1rem 0;
+}
+
+.input_field input {
+  background: map-get($colors, main-grey);
+  width: 90%;
+  height: 1.5rem;
+  margin-top: 0.2rem;
+}
+
+.submit-button {
+  background-color: map-get($colors, main-brown);
+  width: 100px;
+  height: 35px;
+  margin-top: 1.5rem;
+}
