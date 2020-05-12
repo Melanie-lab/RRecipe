@@ -18,15 +18,18 @@ class Welcome extends React.Component {
           <MainButton link="#Top" className="link Persian" text="Persian" />
           <MainButton link="#Top" className="link Indian" text="Indian" />
         </div>
-        {/* <ReactCSSTransitionGroup
-          transitionName="example"
-          transitionAppear={true}
-          transitionAppearTimeout={500}
-          transitionEnter={false}
-          transitionLeave={false}
+        {/*         <CSSTransitionGroup
+          transitionName={{
+            enter: "enter",
+            enterActive: "enterActive",
+            leave: "leave",
+            leaveActive: "leaveActive",
+            appear: "appear",
+            appearActive: "appearActive",
+          }}
         >
-          <p>Fading at Initial Mount</p>
-        </ReactCSSTransitionGroup> */}
+          {item}
+        </CSSTransitionGroup> */}
       </div>
     );
   }

@@ -1,19 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import "./_searchbar.scss";
 
 const Searchbar = () => {
-  const [isSearchVisible, setSearchVisible] = useState(false);
-
-  const onMagnifierClick = () => {
-    setSearchVisible(true);
-  };
-
   return (
     <div>
-      <div
-        className="searchbar"
-        style={{ display: isSearchVisible ? "block" : "none" }}
-      >
+      <div className="searchbar">
         <label>Search for recipes</label>
         <input type="text" />
       </div>
