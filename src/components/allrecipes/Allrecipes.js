@@ -10,14 +10,15 @@ const AllRecipes = () => {
   ));
 };
 
-const Recipe = ({ name, image }) => (
-  <div>
-    <p className="name">{name}</p>
-    <figure>
-      <img scr={image} alt="{name}" />
-    </figure>
-    <p className="description"></p>
-  </div>
-);
+const Recipe = ({ name, image }) => {
+  console.log(image);
+  return (
+    <div>
+      <p className="name">{name}</p>
+      <figure>{/*    <img src={image} alt={name} /> */}</figure>
+      <p className="description"></p>
+    </div>
+  );
+};
 
 export default AllRecipes;

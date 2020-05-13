@@ -1,10 +1,26 @@
-.navlinks {
-  display: none;
-  justify-content: column;
+@import "../../var";
+
+.navlinks nav {
+  display: block;
   position: fixed;
-  top: 0;
+  top: 130px;
   left: 0;
   z-index: 3;
-  background-color: yellowgreen;
-  font-family: "oregano";
+  background-color: map-get($colors, main-brown);
+
+  height: 30vh;
+  width: 60vw;
+}
+
+.navlinks ul {
+  list-style-type: none;
+}
+
+.navlinks li {
+  margin: 1rem 0;
+}
+
+.navlinks a {
+  text-decoration: none;
+  color: map-get($colors, main-white);
 }

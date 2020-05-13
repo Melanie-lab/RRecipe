@@ -38,3 +38,20 @@ h1 {
   border: none;
   background-color: inherit;
 }
+
+.my-node-enter {
+  opacity: 0;
+  background-color: white;
+}
+.my-node-enter-active {
+  opacity: 1;
+  transition: opacity 1000ms;
+  background-color: green;
+}
+.my-node-exit {
+  opacity: 1;
+}
+.my-node-exit-active {
+  opacity: 0;
+  transition: opacity 1000ms;
+}
