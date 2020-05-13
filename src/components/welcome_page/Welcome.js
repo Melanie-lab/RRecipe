@@ -1,6 +1,5 @@
 import React from "react";
 import "./welcome_page.scss";
-import ReactCSSTransitionGroup from "react-transition-group";
 
 class Welcome extends React.Component {
   render() {
@@ -18,18 +17,6 @@ class Welcome extends React.Component {
           <MainButton link="#Top" className="link Persian" text="Persian" />
           <MainButton link="#Top" className="link Indian" text="Indian" />
         </div>
-        {/*         <CSSTransitionGroup
-          transitionName={{
-            enter: "enter",
-            enterActive: "enterActive",
-            leave: "leave",
-            leaveActive: "leaveActive",
-            appear: "appear",
-            appearActive: "appearActive",
-          }}
-        >
-          {item}
-        </CSSTransitionGroup> */}
       </div>
     );
   }

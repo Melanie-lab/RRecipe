@@ -8,18 +8,23 @@ import { CSSTransition } from "react-transition-group";
 const Topline = () => {
   const [searchVisible, setSearchVisible] = useState(false);
   const [navVisible, setNavVisible] = useState(true);
+  const [inProp, setInProp] = useState(false);
 
   return (
     <div className="topline-container">
       <header className="topline">
-        <MenuBtn onClick={() => setNavVisible(!navVisible)} />
-        <h1>Yummie</h1>
+        <MenuBtn onClick={() => console.log("click")} />
+        <CSSTransition in={inProp} timeout={1000} classNames="my-node">
+          <h1>Yummie</h1>
+        </CSSTransition>
         <button
           className="searchbtn"
-          onClick={() => setSearchVisible(!searchVisible)}
+          onClick={() => setSearchVisible(!searchVisible) && setInProp(true)}
         ></button>
       </header>
-      <Animation />
+      <button type="button" onClick={() => setInProp(true)}>
+        Transition
+      </button>
       {searchVisible && <Searchbar role="link" aria-label="search" />}
       {navVisible && <Navbar role="link" aria-label="menu" />}
     </div>
@@ -27,17 +32,3 @@ const Topline = () => {
 };
 
 export default Topline;
-
-function Animation() {
-  const [inProp, setInProp] = useState(false);
-  return (
-    <div>
-      <CSSTransition in={inProp} timeout={200} classNames="my-node">
-        <div>Transition Try</div>
-      </CSSTransition>
-      <button type="button" onClick={() => setInProp(true)}>
-        Click to Transition
-      </button>
-    </div>
-  );
-}

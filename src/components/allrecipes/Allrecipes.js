@@ -11,7 +11,6 @@ const AllRecipes = () => {
 };
 
 const Recipe = ({ name, image }) => {
-  console.log(image);
   return (
     <div>
       <p className="name">{name}</p>

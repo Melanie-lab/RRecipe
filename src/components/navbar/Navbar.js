@@ -1,6 +1,7 @@
 import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { HashLink as Link } from "react-router-hash-link";
 import "./_navbar.scss";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import AllRecipes from "../allrecipes/Allrecipes";
 import Newrecipe from "../newrecipe/Newrecipe";
 
@@ -11,10 +12,14 @@ const Navbar = () => {
         <nav>
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <Link smooth to="/">
+                Home
+              </Link>
             </li>
             <li>
-              <Link to="/allrecipes">See all recipes</Link>
+              <Link smooth to="/allrecipes">
+                See all recipes
+              </Link>
             </li>
             <li>
               <Link to="/newrecipe">New recipe</Link>
@@ -22,7 +27,7 @@ const Navbar = () => {
           </ul>
         </nav>
         <Switch>
-          <Route path="/allrecipes">
+          <Route path="/App#recipe">
             <AllRecipes />
           </Route>
           <Route path="/newrecipe">

@@ -3,7 +3,7 @@ import Topline from "./topline/Topline";
 import "./_app.scss";
 import Welcome from "./welcome_page/Welcome";
 import AllRecipes from "./allrecipes//Allrecipes";
-import Newrecipe from "./addrecipe/Newrecipe";
+import Newrecipe from "./newrecipe/Newrecipe";
 
 class App extends React.Component {
   render() {
@@ -15,7 +15,7 @@ class App extends React.Component {
             <Welcome />
             <hr />
             <h2>Recipes:</h2>
-            <AllRecipes />
+            <AllRecipes id="recipe" />
             <Newrecipe />
           </div>
         </div>
