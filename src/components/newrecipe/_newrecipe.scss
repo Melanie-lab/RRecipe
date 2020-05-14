@@ -16,10 +16,11 @@
 }
 
 .input_field input {
-  background: map-get($colors, main-grey);
+  /*  background: map-get($colors, main-white); */
   width: 90%;
   height: 1.5rem;
   margin-top: 0.2rem;
+  border: 1px solid map-get($colors, main-brown);
 }
 
 .submit-button {

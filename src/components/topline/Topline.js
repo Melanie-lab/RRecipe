@@ -5,7 +5,7 @@ import Navbar from "../navbar/Navbar";
 import { MenuBtn } from "../navbar/Navbar";
 import { CSSTransition } from "react-transition-group";
 
-const Topline = () => {
+const Topline = ({ recipeData, setFilteredRecipes }) => {
   const [searchVisible, setSearchVisible] = useState(false);
   const [navVisible, setNavVisible] = useState(true);
   const [inProp, setInProp] = useState(false);
@@ -25,7 +25,16 @@ const Topline = () => {
       <button type="button" onClick={() => setInProp(true)}>
         Transition
       </button>
-      {searchVisible && <Searchbar role="link" aria-label="search" />}
+      {searchVisible && (
+        <CSSTransition in={inProp} timeout={1000} classNames="my-node">
+          <Searchbar
+            role="link"
+            aria-label="search"
+            recipeData={recipeData}
+            setFilteredRecipes={setFilteredRecipes}
+          />
+        </CSSTransition>
+      )}
       {navVisible && <Navbar role="link" aria-label="menu" />}
     </div>
   );

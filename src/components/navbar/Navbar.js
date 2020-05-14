@@ -7,35 +7,34 @@ import Newrecipe from "../newrecipe/Newrecipe";
 
 const Navbar = () => {
   return (
-    <Router>
-      <div className="navlinks">
-        <nav>
-          <ul>
-            <li>
-              <Link smooth to="/">
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link smooth to="/allrecipes">
-                See all recipes
-              </Link>
-            </li>
-            <li>
-              <Link to="/newrecipe">New recipe</Link>
-            </li>
-          </ul>
-        </nav>
-        <Switch>
-          <Route path="/App#recipe">
-            <AllRecipes />
-          </Route>
-          <Route path="/newrecipe">
-            <Newrecipe />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+    <div className="navlinks">
+      <nav>
+        <ul>
+          <li>
+            <Link smooth to="/">
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link to="/allrecipes">See all recipes</Link>
+          </li>
+          <li>
+            <Link to="/newrecipe" componnt={Newrecipe}>
+              New recipe
+            </Link>
+          </li>
+        </ul>
+      </nav>
+      <Switch>
+        <Route path="/App#recipe">
+          <AllRecipes />
+        </Route>
+        <Route path="/newrecipe">
+          <Newrecipe />
+        </Route>
+        <Route path="/"></Route>
+      </Switch>
+    </div>
   );
 };
 

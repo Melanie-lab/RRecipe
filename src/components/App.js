@@ -4,25 +4,29 @@ import "./_app.scss";
 import Welcome from "./welcome_page/Welcome";
 import AllRecipes from "./allrecipes//Allrecipes";
 import Newrecipe from "./newrecipe/Newrecipe";
+import recipeData from "../data/recipes.json";
 
-class App extends React.Component {
-  render() {
-    return (
-      <div className="ui container">
-        <Topline />
-        <div className="main">
-          <div className="white_container">
-            <Welcome />
-            <hr />
-            <h2>Recipes:</h2>
-            <AllRecipes id="recipe" />
-            <Newrecipe />
-          </div>
+const App = () => {
+  const [filteredRecipes, setFilteredRecipes] = React.useState(recipeData);
+
+  return (
+    <div className="ui container">
+      <Topline
+        recipeData={recipeData}
+        setFilteredRecipes={setFilteredRecipes}
+      />
+      <div className="main">
+        <div className="white_container">
+          <Welcome />
+          <hr />
+          <h2>Recipes:</h2>
+          <AllRecipes recipes={filteredRecipes} />
+          <Newrecipe />
         </div>
-        <footer className="footer">Impressum</footer>
       </div>
-    );
-  }
-}
+      <footer className="footer">Impressum</footer>
+    </div>
+  );
+};
 
 export default App;

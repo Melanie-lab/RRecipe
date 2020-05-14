@@ -1,21 +1,18 @@
 import React from "react";
 import "./_searchbar.scss";
 
-const Searchbar = () => {
+const Searchbar = ({ recipeData, setFilteredRecipes }) => {
   const [searchinput, setSearchinput] = React.useState("");
+  const handleChange = (event) =>
+    setSearchinput(event.currentTarget.value.toLocaleLowerCase());
 
-  const isLowerCase = searchinput === searchinput.toLowerCase();
-  const error = isLowerCase ? null : "Please use lower case";
-
-  const searchInputRef = React.useRef();
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(searchinput);
+    let f = recipeData.filter((data) => {
+      return data.name.toLocaleLowerCase().includes(searchinput) && data.name;
+    });
+    setFilteredRecipes(f);
   };
-
-  function handleChange(event) {
-    setSearchinput(event.target.value.toLowerCase());
-  }
 
   return (
     <div className="searchbar">
@@ -23,19 +20,24 @@ const Searchbar = () => {
         <label htmlFor="searchinput">Search for your favourite Recipe:</label>
         <div className="inputwrapper">
           <input
-            ref={searchInputRef}
             onChange={handleChange}
             id="searchinput"
             placeholder="Search..."
             type="text"
             value={searchinput}
           />
-          <button disabled={Boolean(error)} type="submit"></button>
+          <button type="submit"></button>
         </div>
-        <div style={{ color: "red" }}>{error}</div>
       </form>
     </div>
   );
 };
 
 export default Searchbar;
+
+/* form validation:  const searchInputRef = React.useRef();
+ref={searchInputRef} 
+<div style={{ color: "red" }}>{error}</div>
+  const isLowerCase = searchinput === searchinput.toLowerCase();
+  const error = isLowerCase ? null : "Please use lower case";
+  disabled={Boolean(error)} */

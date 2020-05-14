@@ -1,9 +1,9 @@
 import React from "react";
-import "./allrecipes.scss";
-import data from "../../data/recipes.json";
+import "./_allrecipes.scss";
+/* import data from "../../data/recipes.json"; */
 
-const AllRecipes = () => {
-  return data.map((element, i) => (
+const AllRecipes = ({ recipes }) => {
+  return recipes.map((element, i) => (
     <div key={i} className="recipe_container">
       <Recipe {...element} />
     </div>
