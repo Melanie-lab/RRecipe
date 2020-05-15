@@ -11,21 +11,35 @@
   flex-direction: column;
 }
 
-.input_field {
-  margin: 1rem 0;
-}
-
-.input_field input {
-  /*  background: map-get($colors, main-white); */
-  width: 90%;
-  height: 1.5rem;
-  margin-top: 0.2rem;
-  border: 1px solid map-get($colors, main-brown);
+.new_recipe_form label {
+  margin-top: 1rem;
 }
 
 .submit-button {
   background-color: map-get($colors, main-brown);
+  color: white;
   width: 100px;
   height: 35px;
   margin-top: 1.5rem;
+  border-radius: 5px;
+}
+
+.new_recipe_form input {
+  margin-bottom: 0.7rem;
+}
+
+.selectfield {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.selectfield label {
+  margin-top: 0;
+}
+
+.new_recipe_form textarea {
+  border: 1px solid map-get($colors, main-brown);
 }
