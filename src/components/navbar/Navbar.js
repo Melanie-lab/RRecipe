@@ -19,9 +19,7 @@ const Navbar = () => {
             <Link to="/allrecipes">See all recipes</Link>
           </li>
           <li>
-            <Link to="/newrecipe" componnt={Newrecipe}>
-              New recipe
-            </Link>
+            <Link to="/newrecipe">New recipe</Link>
           </li>
         </ul>
       </nav>
