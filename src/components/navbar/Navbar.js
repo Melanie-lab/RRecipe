@@ -1,49 +1,35 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { HashLink as Link } from "react-router-hash-link";
+import { Link } from "react-router-dom";
 import "./_navbar.scss";
-import AllRecipes from "../allrecipes/Allrecipes";
-import Newrecipe from "../newrecipe/Newrecipe";
 
-const Navbar = () => {
+const Navbar = ({ setNavVisible }) => {
+  const closeNav = () => setNavVisible(false);
   return (
     <div className="navlinks">
       <nav>
         <ul>
           <li>
-            <Link smooth to="/">
+            <Link onClick={closeNav} to="/">
               Home
             </Link>
           </li>
           <li>
-            <Link to="/allrecipes">See all recipes</Link>
+            <Link onClick={closeNav} to="/recipes">
+              See all recipes
+            </Link>
           </li>
           <li>
-            <Link to="/newrecipe" componnt={Newrecipe}>
+            <Link onClick={closeNav} to="/recipes/fish">
+              Fish recipes
+            </Link>
+          </li>
+          <li>
+            <Link onClick={closeNav} to="/recipe/new">
               New recipe
             </Link>
           </li>
         </ul>
       </nav>
-      <Switch>
-        <Route path="/App#recipe">
-          <AllRecipes />
-        </Route>
-        <Route path="/newrecipe">
-          <Newrecipe />
-        </Route>
-        <Route path="/"></Route>
-      </Switch>
-    </div>
-  );
-};
-
-export const MenuBtn = () => {
-  return (
-    <div className="menu" role="link" aria-label="menu">
-      <div className="bar1" aria-hidden="true"></div>
-      <div className="bar1" aria-hidden="true"></div>
-      <div className="bar1" aria-hidden="true"></div>
     </div>
   );
 };
