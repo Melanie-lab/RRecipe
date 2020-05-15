@@ -2,42 +2,44 @@ import React, { useState } from "react";
 import "./_topline.scss";
 import Searchbar from "./searchbar/Searchbar";
 import Navbar from "../navbar/Navbar";
-import { MenuBtn } from "../navbar/Navbar";
+import MenuBtn from "../navbar/MenuBtn";
 import { CSSTransition } from "react-transition-group";
 
-const Topline = () => {
+const Topline = ({ recipeData, setFilteredRecipes }) => {
   const [searchVisible, setSearchVisible] = useState(false);
-  const [navVisible, setNavVisible] = useState(true);
+  const [navVisible, setNavVisible] = useState(false);
+  const [inProp, setInProp] = useState(false);
 
   return (
     <div className="topline-container">
       <header className="topline">
         <MenuBtn onClick={() => setNavVisible(!navVisible)} />
-        <h1>Yummie</h1>
+        <CSSTransition in={inProp} timeout={1000} classNames="my-node">
+          <h1>Yummie</h1>
+        </CSSTransition>
         <button
           className="searchbtn"
-          onClick={() => setSearchVisible(!searchVisible)}
+          onClick={() => setSearchVisible(!searchVisible) && setInProp(true)}
         ></button>
       </header>
-      <Animation />
-      {searchVisible && <Searchbar role="link" aria-label="search" />}
-      {navVisible && <Navbar role="link" aria-label="menu" />}
+      <button type="button" onClick={() => setInProp(true)}>
+        Transition
+      </button>
+      {searchVisible && (
+        <CSSTransition in={inProp} timeout={1000} classNames="my-node">
+          <Searchbar
+            role="link"
+            aria-label="search"
+            recipeData={recipeData}
+            setFilteredRecipes={setFilteredRecipes}
+          />
+        </CSSTransition>
+      )}
+      {navVisible && (
+        <Navbar role="link" aria-label="menu" setNavVisible={setNavVisible} />
+      )}
     </div>
   );
 };
 
 export default Topline;
-
-function Animation() {
-  const [inProp, setInProp] = useState(false);
-  return (
-    <div>
-      <CSSTransition in={inProp} timeout={200} classNames="my-node">
-        <div>Transition Try</div>
-      </CSSTransition>
-      <button type="button" onClick={() => setInProp(true)}>
-        Click to Transition
-      </button>
-    </div>
-  );
-}

@@ -1,0 +1,31 @@
+@import "../../../var";
+
+.searchbar {
+  margin: 1rem 0;
+}
+
+input {
+  margin-top: 0.2rem;
+  height: 31px;
+  width: 100%;
+  border: 1px solid map-get($colors, main-brown);
+  padding-left: 5px;
+}
+
+.searchbar button {
+  background-image: url("./search.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 25px;
+  width: 25px;
+  border-style: none;
+  background-color: inherit;
+  margin: 0;
+  position: absolute;
+  right: 5px;
+  top: 7px;
+}
+
+.inputwrapper {
+  position: relative;
+}
