@@ -1,32 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
 import "./_newrecipe.scss";
 
 const Newrecipe = () => {
-  [storeInput, setStoreInput] = React.useState(inputData);
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const inputData = {
-      recipeName: inputField[0].value,
-      ingredients: inputField[1].value,
-      cookTime: selectField[1].value,
-      prepTime: selectField[2].value,
-      instructions: textAreaField[0].value,
-    };
-    let key = 0;
-    key += 1;
-    localStorage.setItem(key, JSON.stringify(inputData));
-    setStoreInput(inputData);
+  let inputData = {
+    recipename: "",
+    ingredients: "",
   };
+  const [input, setInput] = useState(inputData);
+
+  const handleSubmit = (e) => {
+    const value = e.currentTarget.value;
+    inputData = { ...input, [e.target.name]: value };
+
+    const storeData = localStorage.setItem(
+      inputData.recipename.value,
+      JSON.stringify(inputData)
+    );
+    setInput(storeData);
+  };
+
   return (
     <div className="new_recipe_container">
       <h2>New Recipe:</h2>
       <form className="new_recipe_form" onSubmit={handleSubmit}>
         <label htmlFor="recipename">Recipe name:</label>
-        <input id="recipename" type="text" name="recipename" required />
+        <input
+          /* ref="recipeName" */
+          id="recipename"
+          type="text"
+          name="recipename"
+          /* value={inputData.recipename} */
+          /* onChange={handleChange} */
+          required
+        />
         <label>Ingredients</label>
-        <input type="text" name="ingredients" required />
+        <input
+          type="text"
+          name="ingredients"
+          /* value={inputData.ingredients} */
+          /* onChange={handleChange} */
+          required
+        />
         <Selectfield
+          /* ref={prepRef} */
           id="preptime"
           time="preptime"
           timetext="Preparation time:"
@@ -34,7 +50,7 @@ const Newrecipe = () => {
         <Selectfield id="cooktime" time="cooktime" timetext="Cooking time:" />
         <label htmlFor="instructions">Instructions:</label>
         <textarea id="instructions" rows="5"></textarea>
-        <button className="submit-button" type="submit">
+        <button className="submit-button" type="submit" onSubmit={handleSubmit}>
           Submit
         </button>
       </form>
@@ -69,3 +85,16 @@ const Selectfield = (props) => {
 };
 
 export default Newrecipe;
+/* const handleSubmit = (event) => {
+  event.preventDefault();
+  const recipeData = {
+    recipeName: inputField[0].value,
+    ingredients: inputField[1].value,
+    cookTime: selectField[1].value,
+    prepTime: selectField[2].value,
+    instructions: textAreaField[0].value,
+  };
+  let key = 0;
+  key += 1;
+  const inputData = localStorage.setItem(key, JSON.stringify(recipeData));
+  setStoreInput(inputData);  */

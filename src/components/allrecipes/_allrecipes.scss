@@ -1,0 +1,33 @@
+@import "../../var";
+
+.recipecard img {
+  max-width: 100%;
+  margin: 0;
+}
+
+.recipecard {
+  border: 1px solid map-get($colors, main-white);
+  border-radius: 5px;
+  margin-top: 1rem;
+  padding: 1rem;
+  box-shadow: 2px 2px 4px grey;
+  background-color: map-get($colors, main-brown);
+  color: map-get($colors, main-white);
+  font-family: oregano;
+  text-align: center;
+}
+
+.card_icons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  max-width: 100%;
+}
+
+.card_icons button {
+  border-style: none;
+  background-color: map-get($colors, main-brown);
+  color: white;
+  margin: 0 5px;
+  text-shadow: 2px 2px 4px black;
+}

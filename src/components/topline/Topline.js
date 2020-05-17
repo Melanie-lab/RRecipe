@@ -5,7 +5,7 @@ import Navbar from "../navbar/Navbar";
 import MenuBtn from "../navbar/MenuBtn";
 import { CSSTransition } from "react-transition-group";
 
-const Topline = ({ recipeData, setFilteredRecipes }) => {
+const Topline = ({ setFilteredRecipes }) => {
   const [searchVisible, setSearchVisible] = useState(false);
   const [navVisible, setNavVisible] = useState(false);
   const [inProp, setInProp] = useState(false);
@@ -14,7 +14,7 @@ const Topline = ({ recipeData, setFilteredRecipes }) => {
     <div className="topline-container">
       <header className="topline">
         <MenuBtn onClick={() => setNavVisible(!navVisible)} />
-        <CSSTransition in={inProp} timeout={1000} classNames="my-node">
+        <CSSTransition in={inProp} timeout={10000} classNames="my-node">
           <h1>Yummie</h1>
         </CSSTransition>
         <button
@@ -26,11 +26,10 @@ const Topline = ({ recipeData, setFilteredRecipes }) => {
         Transition
       </button>
       {searchVisible && (
-        <CSSTransition in={inProp} timeout={1000} classNames="my-node">
+        <CSSTransition in={inProp} timeout={30000} classNames="my-node">
           <Searchbar
             role="link"
             aria-label="search"
-            recipeData={recipeData}
             setFilteredRecipes={setFilteredRecipes}
           />
         </CSSTransition>
