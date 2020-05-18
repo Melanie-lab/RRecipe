@@ -1,14 +1,10 @@
 import React from "react";
-
 import Topline from "../components/topline/Topline";
 
-const DefaultLayout = ({ children, recipeData, setFilteredRecipes }) => {
+const DefaultLayout = ({ children }) => {
   return (
     <div className="ui container">
-      <Topline
-        recipeData={recipeData}
-        setFilteredRecipes={setFilteredRecipes}
-      />
+      <Topline />
       <div className="main">
         <div className="white_container">{children}</div>
       </div>

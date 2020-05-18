@@ -1,26 +1,32 @@
-import React, { useContext, useReducer } from "react";
+import React, { useContext } from "react";
+import { useHistory } from "react-router-dom";
 import "./_searchbar.scss";
 import { recipeDataContext } from "../../App";
 
-const Searchbar = ({ setFilteredRecipes }) => {
-  const recipeDetails = useContext(recipeDataContext);
+const Searchbar = React.forwardRef((props, ref) => {
+  const { recipeData, setFilteredRecipes } = useContext(recipeDataContext);
   const [searchinput, setSearchinput] = React.useState("");
+  const history = useHistory();
 
   const handleChange = (event) =>
     setSearchinput(event.currentTarget.value.toLocaleLowerCase());
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    let f = recipeDetails.filter((data) => {
+    let f = recipeData.filter((data) => {
       return data.name.toLocaleLowerCase().includes(searchinput) && data.name;
     });
     setFilteredRecipes(f);
+    history.push({
+      pathname: "/recipes",
+      search: `?search=${encodeURIComponent(searchinput)}`, //useLocation()
+    });
 
     console.log(recipeDataContext);
   };
 
   return (
-    <div className="searchbar">
+    <div ref={ref} className="searchbar">
       <form className="searchform" onSubmit={handleSubmit}>
         <label htmlFor="searchinput">Search for your favourite Recipe:</label>
         <div className="inputwrapper">
@@ -36,7 +42,7 @@ const Searchbar = ({ setFilteredRecipes }) => {
       </form>
     </div>
   );
-};
+});
 
 export default Searchbar;
 
