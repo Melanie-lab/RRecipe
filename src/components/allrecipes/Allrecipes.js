@@ -1,31 +1,33 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./_allrecipes.scss";
 import { Link } from "react-router-dom";
-/* import data from "../../data/recipes.json"; */
-import RecipeDetails from "./recipedetails/Recipedetails";
+import { recipeDataContext } from "../App";
 
-const AllRecipes = ({ recipes, match }) => {
+/* import data from "../../data/recipes.json"; */
+
+const AllRecipes = () => {
+  const { filteredRecipes: recipes } = useContext(recipeDataContext);
+
   return (
     <div>
       <h2>Recipes:</h2>
       <p>
-        Yummie recipes found: <span>{/* filteredRecipes.length} */}</span>
+        Yummie recipes found: <span>{recipes.length}</span>
       </p>
-      <ShowRecipes match={match} recipes={recipes} />
-      <RecipeDetails match={match} />
+      <ShowRecipes recipes={recipes} />
     </div>
   );
 };
 
-const ShowRecipes = ({ recipes, match }) => {
+const ShowRecipes = ({ recipes }) => {
   return recipes.map((element, i) => (
     <div key={i} className="recipe_container">
-      <Recipe {...element} match={match} />
+      <Recipe {...element} />
     </div>
   ));
 };
 
-const Recipe = ({ match, name, id, image }) => {
+const Recipe = ({ name, id, image }) => {
   return (
     <div className="recipecard">
       <h3 className="recipename">{name}</h3>
@@ -33,7 +35,7 @@ const Recipe = ({ match, name, id, image }) => {
         <img src={image} alt={name} />
       </figure>
       <div className="card_icons">
-        <Link to={`${match.params}/${id}`} className="details">
+        <Link to={`/recipe/${id}`} className="details">
           Details
         </Link>
         <button className="edit">Edit</button>

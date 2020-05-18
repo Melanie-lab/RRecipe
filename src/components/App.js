@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route, useRouteMatch } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import DefaultLayout from "../layouts/Default";
 import Welcome from "./welcome_page/Welcome";
 import AllRecipes from "./allrecipes/Allrecipes";
@@ -13,56 +13,42 @@ export const recipeDataContext = React.createContext(recipeData);
 
 const App = () => {
   const [filteredRecipes, setFilteredRecipes] = React.useState(recipeData);
-  const match = useRouteMatch();
+  const recipeValue = { filteredRecipes, setFilteredRecipes, recipeData };
+
   return (
-    <Switch>
-      <recipeDataContext.Provider value={recipeData}>
-        <Route path="/recipe/new">
-          <DefaultLayout
-            filteredRecipes={filteredRecipes}
-            setFilteredRecipes={setFilteredRecipes}
-          >
+    <recipeDataContext.Provider value={recipeValue}>
+      <Switch>
+        <Route path="/recipe/new" exact>
+          <DefaultLayout>
             <Newrecipe />
           </DefaultLayout>
         </Route>
 
         <Route path="/recipes/:category">
-          <DefaultLayout
-            filteredRecipes={filteredRecipes}
-            setFilteredRecipes={setFilteredRecipes}
-          >
+          <DefaultLayout>
             <div>Unterseite für die Rezepte Kategorien</div>
           </DefaultLayout>
         </Route>
 
-        <Route path={`${match.path}/:topicId`}>
-          <DefaultLayout
-            filteredRecipes={filteredRecipes}
-            setFilteredRecipes={setFilteredRecipes}
-          >
+        <Route path={`/recipe/:id`}>
+          <DefaultLayout>
             <RecipeDetails />
           </DefaultLayout>
         </Route>
 
         <Route path="/recipes">
-          <DefaultLayout
-            filteredRecipes={filteredRecipes}
-            setFilteredRecipes={setFilteredRecipes}
-          >
-            <AllRecipes recipes={filteredRecipes} match={match} />
+          <DefaultLayout>
+            <AllRecipes />
           </DefaultLayout>
         </Route>
 
         <Route path="/">
-          <DefaultLayout
-            filteredRecipes={filteredRecipes}
-            setFilteredRecipes={setFilteredRecipes}
-          >
+          <DefaultLayout>
             <Welcome />
           </DefaultLayout>
         </Route>
-      </recipeDataContext.Provider>
-    </Switch>
+      </Switch>
+    </recipeDataContext.Provider>
   );
 };
 

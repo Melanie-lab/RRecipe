@@ -3,13 +3,9 @@ import recipes from "../../../data/recipes.json";
 import { useParams } from "react-router-dom";
 
 const RecipeDetails = ({ match }) => {
-  let { topicId } = useParams();
-  match.params = { topicId: "tahini-bread-pudding" };
+  let { id: recipeId } = useParams();
 
-  const details = recipes.find(({ id }) => id === match.params.topicId);
-  console.log(match.params);
-  console.log(topicId);
-
+  const details = recipes.find(({ id }) => id === recipeId);
   return (
     <div>
       <h2>{details.name}</h2>
