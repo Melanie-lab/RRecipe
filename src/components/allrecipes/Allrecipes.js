@@ -26,8 +26,6 @@ const ShowRecipes = ({ recipes, match }) => {
 };
 
 const Recipe = ({ match, name, id, image }) => {
-  const params = { ...recipes.id };
-
   return (
     <div className="recipecard">
       <h3 className="recipename">{name}</h3>

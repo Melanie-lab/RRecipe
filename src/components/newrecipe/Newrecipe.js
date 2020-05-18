@@ -10,6 +10,7 @@ const Newrecipe = () => {
 
   const handleSubmit = (e) => {
     const value = e.currentTarget.value;
+    console.log(inputData);
     inputData = { ...input, [e.target.name]: value };
 
     const storeData = localStorage.setItem(
@@ -29,8 +30,8 @@ const Newrecipe = () => {
           id="recipename"
           type="text"
           name="recipename"
-          /* value={inputData.recipename} */
-          /* onChange={handleChange} */
+          /* value={inputData.recipename}
+          onChange={handleChange} */
           required
         />
         <label>Ingredients</label>
