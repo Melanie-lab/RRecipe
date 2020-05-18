@@ -9,6 +9,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
+  overflow: scroll;
 }
 
 code {
@@ -71,4 +72,8 @@ code {
   margin: 0 auto;
   border-radius: 10px;
   overflow: scroll;
+}
+
+p span {
+  font-style: italic;
 }

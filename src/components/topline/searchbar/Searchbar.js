@@ -1,17 +1,22 @@
-import React from "react";
+import React, { useContext, useReducer } from "react";
 import "./_searchbar.scss";
+import { recipeDataContext } from "../../App";
 
-const Searchbar = ({ recipeData, setFilteredRecipes }) => {
+const Searchbar = ({ setFilteredRecipes }) => {
+  const recipeDetails = useContext(recipeDataContext);
   const [searchinput, setSearchinput] = React.useState("");
+
   const handleChange = (event) =>
     setSearchinput(event.currentTarget.value.toLocaleLowerCase());
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    let f = recipeData.filter((data) => {
+    let f = recipeDetails.filter((data) => {
       return data.name.toLocaleLowerCase().includes(searchinput) && data.name;
     });
     setFilteredRecipes(f);
+
+    console.log(recipeDataContext);
   };
 
   return (
@@ -26,7 +31,7 @@ const Searchbar = ({ recipeData, setFilteredRecipes }) => {
             type="text"
             value={searchinput}
           />
-          <button type="submit"></button>
+          <button type="submit" onSubmit={handleSubmit}></button>
         </div>
       </form>
     </div>
