@@ -2,22 +2,22 @@ import React, { useState } from "react";
 import "./_newrecipe.scss";
 
 const Newrecipe = () => {
-  let inputData = {
+  const inputData = {
     recipename: "",
     ingredients: "",
   };
-  const [input, setInput] = useState(inputData);
+  const [inputValue, setInputValue] = useState(inputData);
+
+  const handleChange = (el) => {
+    const input = el.currentTarget.value;
+    const inputData = { ...inputValue, [el.target.name]: input };
+    setInputValue(inputData);
+  };
 
   const handleSubmit = (e) => {
-    const value = e.currentTarget.value;
-    console.log(inputData);
-    inputData = { ...input, [e.target.name]: value };
-
-    const storeData = localStorage.setItem(
-      inputData.recipename.value,
-      JSON.stringify(inputData)
-    );
-    setInput(storeData);
+    e.preventDefault();
+    const key = inputValue.recipename;
+    localStorage.setItem(key, JSON.stringify(inputValue));
   };
 
   return (
@@ -26,24 +26,25 @@ const Newrecipe = () => {
       <form className="new_recipe_form" onSubmit={handleSubmit}>
         <label htmlFor="recipename">Recipe name:</label>
         <input
-          /* ref="recipeName" */
           id="recipename"
           type="text"
           name="recipename"
-          /* value={inputData.recipename}
-          onChange={handleChange} */
+          onChange={handleChange}
           required
         />
-        <label>Ingredients</label>
-        <input
-          type="text"
-          name="ingredients"
-          /* value={inputData.ingredients} */
-          /* onChange={handleChange} */
-          required
-        />
+        <label htmlFor="fish">Category: </label>
+        <select className="selectfield category">
+          <option value="fish">Fish</option>
+          <option value="meat">Meat</option>
+          <option value="veggie">Veggie</option>
+          <option value="desert">Desert</option>
+        </select>
+        <hr></hr>
+        <br></br>
+        <h3>Ingredients:</h3>
+        <Ingredients handleChange={handleChange} />
+        <hr></hr>
         <Selectfield
-          /* ref={prepRef} */
           id="preptime"
           time="preptime"
           timetext="Preparation time:"
@@ -55,6 +56,30 @@ const Newrecipe = () => {
           Submit
         </button>
       </form>
+    </div>
+  );
+};
+
+//dropdown
+const Ingredients = (handleChange) => {
+  return (
+    <div>
+      <button>+</button>
+      <button>-</button>
+      <br></br>
+      <label>Ingredient</label>
+      <button>x</button>
+      <input type="text" name="ingredients" onChange={handleChange} required />
+      <label htmlFor="amount">Amount </label>
+      <input className="amount" name="amount" />
+      <label htmlFor="unit">Unit </label>
+      <select name="unit">
+        <option></option>
+        <option>g</option>
+        <option>kg</option>
+        <option>mL</option>
+        <option>L</option>
+      </select>
     </div>
   );
 };
@@ -86,16 +111,3 @@ const Selectfield = (props) => {
 };
 
 export default Newrecipe;
-/* const handleSubmit = (event) => {
-  event.preventDefault();
-  const recipeData = {
-    recipeName: inputField[0].value,
-    ingredients: inputField[1].value,
-    cookTime: selectField[1].value,
-    prepTime: selectField[2].value,
-    instructions: textAreaField[0].value,
-  };
-  let key = 0;
-  key += 1;
-  const inputData = localStorage.setItem(key, JSON.stringify(recipeData));
-  setStoreInput(inputData);  */

@@ -1,7 +1,9 @@
 @import "../../var";
 
 .topline-container {
-  padding: 0.4rem;
+  padding: 0.4rem 0.4rem 0 0.4rem;
+  position: relative;
+  box-shadow: 5px 5px 5px grey;
 }
 
 .topline {

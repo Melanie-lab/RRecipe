@@ -6,7 +6,6 @@ import AllRecipes from "./allrecipes/Allrecipes";
 import Newrecipe from "./newrecipe/Newrecipe";
 import recipeData from "../data/recipes.json";
 import RecipeDetails from "./allrecipes/recipedetails/Recipedetails";
-
 import "./_app.scss";
 
 export const recipeDataContext = React.createContext(recipeData);
