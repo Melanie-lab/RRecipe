@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import "./welcome_page.scss";
+import { useSpring, animated } from "react-spring";
 
 const Welcome = () => {
   const categories = [
@@ -11,17 +12,17 @@ const Welcome = () => {
     "indian",
   ];
   const renderMainButtons = (category, i) => {
-    let angle = ((2 * Math.PI) / categories.length) * i;
-    let radius = 80;
+    const angle = ((2 * Math.PI) / categories.length) * i;
+    const radius = 80;
     const pos = 70;
-    let topP = pos + Math.cos(angle) * radius;
-    let leftP = pos + Math.sin(angle) * radius;
+    const topP = pos + Math.cos(angle) * radius;
+    const leftP = pos + Math.sin(angle) * radius;
     return (
       <MainButton
         link="#Top"
         className={`link ${category}`}
         text={category}
-        style={{ top: topP, left: leftP }}
+        style={{ top: topP, left: leftP, fontSize: "inherit" }}
         key={i}
       />
     );
@@ -39,10 +40,22 @@ const Welcome = () => {
 };
 
 const MainButton = ({ className, link, text, style }) => {
+  const [isToggled, setToggle] = useState(false);
+  const fade = useSpring({ fontSize: isToggled ? "0.5rem" : "2rem" });
+
   return (
-    <a className={className} href={link} style={style}>
-      {text}
-    </a>
+    <div>
+      <animated.div style={fade}>
+        <a
+          className={className}
+          href={link}
+          style={style}
+          onClick={() => setToggle(!isToggled)}
+        >
+          {text}
+        </a>
+      </animated.div>
+    </div>
   );
 };
 

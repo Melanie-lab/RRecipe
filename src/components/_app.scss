@@ -45,7 +45,7 @@ code {
   }
 
   background-color: #5c2626;
-  color: antiquewhite;
+  color: 2px 2px 4px map-get($colors, main-white);
 }
 
 main {
@@ -53,10 +53,7 @@ main {
     grid-row: 2;
     grid-column: 2 / span 3;
   }
-  background-image: url("../img/background.jpeg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
+
   z-index: 1;
   width: 100vw;
   height: 100vh;

@@ -2,8 +2,6 @@
 
 .topline-container {
   padding: 0.4rem 0.4rem 0 0.4rem;
-  position: relative;
-  box-shadow: 5px 5px 5px grey;
 }
 
 .topline {
@@ -48,12 +46,12 @@ h1 {
 .searchtransition-enter-active,
 .searchtransition-appear-active {
   opacity: 1;
-  transition: opacity 3000ms;
+  transition: opacity 300ms ease-out;
 }
 .searchtransition-exit {
   opacity: 1;
 }
 .searchtransition-exit-active {
   opacity: 0;
-  transition: opacity 3000ms;
+  transition: opacity 300ms ease-in-out;
 }

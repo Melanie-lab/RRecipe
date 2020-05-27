@@ -1,11 +1,22 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 import { Link } from "react-router-dom";
 import "./_navbar.scss";
 import { toggleNavContext } from "../../layouts/Default";
+import { useSpring, animated } from "react-spring";
+import { useClickAway } from "react-use";
 
 const Navbar = () => {
+  const { navVisible, setNavVisible } = useContext(toggleNavContext);
+  const fadeIn = useSpring({
+    transform: navVisible ? `translate3d(-5%,0,0)` : `translate3d(110%,0,0)`,
+  });
+  const ref = useRef(null);
+  useClickAway(ref, () => {
+    setNavVisible(false);
+  });
+
   return (
-    <div className="navlinks">
+    <animated.div ref={ref} className="navlinks" style={fadeIn}>
       <nav>
         <ul>
           <NaviLink to="/" linktext="Home" />
@@ -21,17 +32,17 @@ const Navbar = () => {
           <NaviLink to="/recipe/new" linktext="Add new recipe" />
         </ul>
       </nav>
-    </div>
+    </animated.div>
   );
 };
 
-const NaviLink = (props) => {
+const NaviLink = ({ linktext, to }) => {
   const { setNavVisible } = useContext(toggleNavContext);
   const closeNav = () => setNavVisible(false);
   return (
     <li>
-      <Link onClick={closeNav} to={props.to}>
-        {props.linktext}
+      <Link onClick={closeNav} to={to}>
+        {linktext}
       </Link>
     </li>
   );

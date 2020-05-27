@@ -1,7 +1,7 @@
 @import "../../var";
 
 .navlinks {
-  box-shadow: 5px 5px 5px grey;
+  box-shadow: 5px 5px 5px map-get($colors, grey);
 }
 
 .navlinks nav {

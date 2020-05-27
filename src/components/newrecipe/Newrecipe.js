@@ -1,48 +1,72 @@
 import React, { useState } from "react";
 import "./_newrecipe.scss";
+import { useFormik } from "formik";
 
 const Newrecipe = () => {
-  const inputData = {
-    recipename: "",
-    ingredients: "",
-  };
-  const [inputValue, setInputValue] = useState(inputData);
+  const [count, setCount] = useState([1, 1, 1]);
+  const formik = useFormik({
+    initialValues: {
+      recipeName: "",
+      category: "",
+    },
+    onSubmit: (values) => {
+      /* const key = initialValues.recipeName; */
+      console.log(JSON.stringify(values, null));
+    },
+  });
 
-  const handleChange = (el) => {
-    const input = el.currentTarget.value;
-    const inputData = { ...inputValue, [el.target.name]: input };
-    setInputValue(inputData);
+  const renderIngredients = () => {
+    return count.map((element, i) => (
+      <Ingredients key={i} handleChange={formik.handleChange} {...element} />
+    ));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const key = inputValue.recipename;
-    localStorage.setItem(key, JSON.stringify(inputValue));
+  const plus = () => {
+    count.push(1);
+    setCount(count);
+    console.log(count);
   };
 
   return (
     <div className="new_recipe_container">
       <h2>New Recipe:</h2>
-      <form className="new_recipe_form" onSubmit={handleSubmit}>
+      <form className="new_recipe_form" onSubmit={formik.handleSubmit}>
         <label htmlFor="recipename">Recipe name:</label>
         <input
-          id="recipename"
+          id="recipeName"
           type="text"
-          name="recipename"
-          onChange={handleChange}
-          required
+          name="recipeName"
+          onChange={formik.handleChange}
+          value={formik.values.recipeName}
         />
         <label htmlFor="fish">Category: </label>
-        <select className="selectfield category">
+        <select
+          className="selectfield category"
+          id="category"
+          name="category"
+          onChange={formik.handleChange}
+          value={formik.values.category}
+        >
           <option value="fish">Fish</option>
           <option value="meat">Meat</option>
           <option value="veggie">Veggie</option>
           <option value="desert">Desert</option>
         </select>
         <hr></hr>
-        <br></br>
         <h3>Ingredients:</h3>
-        <Ingredients handleChange={handleChange} />
+        <div className="form_ingredients">
+          <button className="plus" type="button" onClick={plus}>
+            +
+          </button>
+          <button className="min">-</button>
+          <div className="ingredient_components">{renderIngredients()}</div>
+          <button type="button" className="plus">
+            +
+          </button>
+          <button type="button" className="min">
+            -
+          </button>
+        </div>
         <hr></hr>
         <Selectfield
           id="preptime"
@@ -52,7 +76,7 @@ const Newrecipe = () => {
         <Selectfield id="cooktime" time="cooktime" timetext="Cooking time:" />
         <label htmlFor="instructions">Instructions:</label>
         <textarea id="instructions" rows="5"></textarea>
-        <button className="submit-button" type="submit" onSubmit={handleSubmit}>
+        <button className="submit-button" type="submit">
           Submit
         </button>
       </form>
@@ -61,25 +85,36 @@ const Newrecipe = () => {
 };
 
 //dropdown
-const Ingredients = (handleChange) => {
+const Ingredients = ({ handleChange }) => {
   return (
     <div>
-      <button>+</button>
-      <button>-</button>
       <br></br>
-      <label>Ingredient</label>
-      <button>x</button>
-      <input type="text" name="ingredients" onChange={handleChange} required />
-      <label htmlFor="amount">Amount </label>
-      <input className="amount" name="amount" />
-      <label htmlFor="unit">Unit </label>
-      <select name="unit">
-        <option></option>
-        <option>g</option>
-        <option>kg</option>
-        <option>mL</option>
-        <option>L</option>
-      </select>
+
+      <div className="ingredient_div">
+        <div className="ingredients_div_div">
+          <label>Ingredient</label>
+          <input
+            type="text"
+            placeholder="Flour..."
+            name="ingredients"
+            onChange={handleChange}
+          />
+        </div>
+        <div className="ingredient_amount_div">
+          <label htmlFor="amount">Amount </label>
+          <input className="amount" name="amount" placeholder="" />
+        </div>
+        <div className="ingredient_unit_div">
+          <label htmlFor="unit">Unit </label>
+          <select name="unit">
+            <option>-</option>
+            <option>g</option>
+            <option>kg</option>
+            <option>mL</option>
+            <option>L</option>
+          </select>
+        </div>
+      </div>
     </div>
   );
 };
@@ -111,3 +146,21 @@ const Selectfield = (props) => {
 };
 
 export default Newrecipe;
+
+/*   const inputData = {
+    recipename: "",
+    ingredients: "",
+  };
+  const [inputValue, setInputValue] = useState(inputData);
+
+  const handleChange = (el) => {
+    const input = el.currentTarget.value;
+    const inputData = { ...inputValue, [el.target.name]: input };
+    setInputValue(inputData);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const key = inputValue.recipename;
+    localStorage.setItem(key, JSON.stringify(inputValue));
+  }; */

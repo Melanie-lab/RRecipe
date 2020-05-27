@@ -16,7 +16,7 @@
 
 .submit-button {
   background-color: map-get($colors, main-brown);
-  color: white;
+  color: map-get($colors, main-white);
   width: 100px;
   height: 35px;
   margin-top: 1.5rem;
@@ -39,6 +39,7 @@
   justify-content: space-between;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
+  background-color: inherit;
 }
 
 .selectfield label {
@@ -50,10 +51,47 @@
 }
 
 .new_recipe_form hr {
-  border: 1px solid red;
+  margin-top: 1rem;
+  border: 0.5px solid map-get($colors, main-black);
+  width: 100%;
 }
 
-input.amount {
-  width: 30%;
-  margin-right: 10px;
+.ingredient_div {
+  display: flex;
+  font-size: 0.9rem;
+}
+
+.ingredient_div input {
+  width: 100%;
+}
+
+.ingredient_amount_div {
+  width: 80px;
+  margin: 0 0.5rem;
+}
+
+.ingredient_unit_div select {
+  background-color: inherit;
+  height: 31px;
+  margin-top: 3px;
+}
+
+.form_ingredients button {
+  margin-right: 0.5rem;
+  height: 25px;
+  width: 25px;
+  margin-top: 3px;
+  border-radius: 50%;
+  color: map-get($colors, main-white);
+  font-weight: 800;
+  border: 1px solid map-get($colors, main-black);
+  font-size: 18px;
+}
+
+.plus {
+  background-color: map-get($colors, main-green);
+}
+
+.min {
+  background-color: map-get($colors, main-red);
 }

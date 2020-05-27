@@ -15,7 +15,7 @@
   color: map-get($colors, main-brown);
   font-family: oregano;
   text-align: center;
-  box-shadow: 2px 2px 4px grey;
+  box-shadow: 2px 2px 4px map-get($colors, main-grey);
 }
 
 .card_icons {
@@ -30,5 +30,5 @@
   background-color: map-get($colors, main-brown);
   color: white;
   margin: 0 5px;
-  text-shadow: 2px 2px 4px grey;
+  text-shadow: 2px 2px 4px map-get($colors, main-grey);
 }
