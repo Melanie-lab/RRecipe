@@ -4,14 +4,16 @@ import DefaultLayout from "../layouts/Default";
 import Welcome from "./welcome_page/Welcome";
 import AllRecipes from "./allrecipes/Allrecipes";
 import FormikNewrecipe from "./newrecipe/FormikNewRecipe";
-import recipeData from "../data/recipes.json";
-import data from "../data/Data";
+/* import recipeData from "../data/recipes.json"; */
+import recipeData from "../data/Data";
 import RecipeDetails from "./allrecipes/recipedetails/Recipedetails";
 import "./_app.scss";
 import { animated, useTransition } from "react-spring";
 import Categories from "./allrecipes/categories/Categories";
 
 export const recipeDataContext = React.createContext(recipeData);
+
+console.log(recipeData);
 
 const App = () => {
   const [filteredRecipes, setFilteredRecipes] = React.useState(recipeData);

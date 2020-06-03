@@ -10,7 +10,6 @@ const RecipeDetails = () => {
   const details = recipes.find(({ id }) => id === recipeId);
 
   const Ingredient = () => {
-    console.log(details);
     return details.ingredient.map((e, i) => (
       <ul key={i} className="ingr_details">
         <li>
@@ -24,6 +23,10 @@ const RecipeDetails = () => {
     ));
   };
 
+  const handleRightClick = () => {
+    console.log("right");
+  };
+
   return (
     <div className="rdetails">
       <h2>{details.name}</h2>
@@ -35,7 +38,7 @@ const RecipeDetails = () => {
           name="portions"
           id="portions"
           /* value={portion} */
-          /* onChange={setPortion(2)} */
+          /*   onChange={setPortion(event.target.elements.select.value)} */
         >
           <option value="1">1</option>
           <option value="2">2</option>
@@ -58,7 +61,9 @@ const RecipeDetails = () => {
       <Ingredient />
       <div className="arrowbtns">
         <button className="btn-left">Left</button>
-        <button className="btn-right">Right</button>
+        <button className="btn-right" onClick={handleRightClick}>
+          Right
+        </button>
       </div>
     </div>
   );

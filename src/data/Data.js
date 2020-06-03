@@ -1,17 +1,18 @@
-import recipeData from "./recipes.json";
+import recipeDataJSON from "./recipes.json";
 
-let recipes = [...recipeData];
-let check = false;
+let recipeData = [...recipeDataJSON];
+let check = true;
 
-const handleCheck = (item) => {
-  for (var i = 0; i < localStorage.length; i++) {
-    item = localStorage.getItem(localStorage.key(i));
-    check ? recipes.push(item) : (recipes = [].push(item));
-  }
-};
+/* export const handleCheck = (item) => { */
+let item;
+for (let i = 0; i < localStorage.length; i++) {
+  item = localStorage.getItem(localStorage.key(i));
+  check ? recipeData.push(item) : (recipeData = [].push(item));
+}
+/* }; */
 
-console.log(recipes);
+console.log(recipeData);
 
-export default recipes;
+export default recipeData;
 
 // ifcheckbox checked

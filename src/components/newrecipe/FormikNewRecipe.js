@@ -9,14 +9,7 @@ const options = [
   { value: "Indian", label: "Indian" },
 ];
 
-
-
 const ingrList = () => (
-  const handleChange = () => {
-
-  }
-
-  return (
   <div>
     <h2>New recipe</h2>
     <Formik
@@ -138,7 +131,7 @@ const ingrList = () => (
       )}
     />
   </div>
-);)
+);
 
 /* const SelectTags = ({ options, field, form }) => (
   <Select

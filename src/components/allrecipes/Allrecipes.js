@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 import "./_allrecipes.scss";
 import { Link } from "react-router-dom";
 import { recipeDataContext } from "../App";
-import recipesJSON from "../../data/recipes.json";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 
@@ -59,9 +58,3 @@ export const Recipe = ({ name, id, image }) => {
 };
 
 export default AllRecipes;
-
-let item;
-for (var i = 0; i < localStorage.length; i++) {
-  item = localStorage.getItem(localStorage.key(i));
-  recipesJSON.push(item);
-}
