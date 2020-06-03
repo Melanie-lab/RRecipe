@@ -12,14 +12,15 @@ const Welcome = () => {
   ];
   const renderMainButtons = (category, i) => {
     let angle = ((2 * Math.PI) / categories.length) * i;
-    let radius = 50;
-    let topP = 50 + Math.cos(angle) * radius;
-    let leftP = 50 + Math.sin(angle) * radius;
+    let radius = 80;
+    const pos = 70;
+    let topP = pos + Math.cos(angle) * radius;
+    let leftP = pos + Math.sin(angle) * radius;
     return (
       <MainButton
         link="#Top"
-        className={`link ${category.toUpperCase()}`}
-        text={category.toUpperCase()}
+        className={`link ${category}`}
+        text={category}
         style={{ top: topP, left: leftP }}
         key={i}
       />

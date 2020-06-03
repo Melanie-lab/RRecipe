@@ -2,7 +2,6 @@
 
 .new_recipe_container {
   border-radius: 10px;
-  border: 1px solid map-get($colors, main-black);
   padding: 0.5rem 1rem;
 }
 
@@ -24,8 +23,14 @@
   border-radius: 5px;
 }
 
-.new_recipe_form input {
+.new_recipe_form input,
+.category {
   margin-bottom: 0.7rem;
+  margin-top: 0.2rem;
+  height: 31px;
+  width: 100%;
+  border: 1px solid map-get($colors, main-brown);
+  padding-left: 5px;
 }
 
 .selectfield {
@@ -42,4 +47,13 @@
 
 .new_recipe_form textarea {
   border: 1px solid map-get($colors, main-brown);
+}
+
+.new_recipe_form hr {
+  border: 1px solid red;
+}
+
+input.amount {
+  width: 30%;
+  margin-right: 10px;
 }

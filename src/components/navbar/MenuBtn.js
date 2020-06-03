@@ -1,13 +1,13 @@
 import React from "react";
+import "./menubtn.scss";
 
-const MenuBtn = ({ onClick }) => {
+const MenuBtn = ({ onClick, h }) => {
   return (
-    // TODO: Nutze hier unbedingt ein button element, egal was du dafür CSS mäßig verbiegen musst, damit du nicht die ganze accessbility nachrüsten musst
-    <div onClick={onClick} className="menu" role="link" aria-label="menu">
+    <button onClick={onClick} className="menu" role="link" aria-label="menu">
       <div className="bar1" aria-hidden="true"></div>
       <div className="bar1" aria-hidden="true"></div>
       <div className="bar1" aria-hidden="true"></div>
-    </div>
+    </button>
   );
 };
 

@@ -1,25 +1,28 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import "./_topline.scss";
 import Searchbar from "./searchbar/Searchbar";
 import Navbar from "../navbar/Navbar";
 import MenuBtn from "../navbar/MenuBtn";
 import { CSSTransition } from "react-transition-group";
+import { useLockBodyScroll, useToggle } from "react-use";
+import { toggleNavContext } from "../../layouts/Default";
 
 const Topline = ({ setFilteredRecipes }) => {
+  const { navVisible, setNavVisible } = useContext(toggleNavContext);
   const [searchVisible, setSearchVisible] = useState(false);
-  const [navVisible, setNavVisible] = useState(false);
   const searchRef = useRef(null);
-  console.log(searchVisible);
+  const [locked, toggleLocked] = useToggle(false);
+  useLockBodyScroll(locked);
+
+  const handleClick = () => {
+    setNavVisible(!navVisible);
+    toggleLocked(!locked);
+  };
 
   return (
     <div className="topline-container">
       <header className="topline">
-        <MenuBtn
-          onClick={
-            () => setNavVisible(!navVisible)
-            /* &&  document.querySelector("body").style.overflow ="hidden" */
-          }
-        />
+        <MenuBtn onClick={handleClick} />
         <h1>Yummie</h1>
         <button
           className="searchbtn"
@@ -30,7 +33,7 @@ const Topline = ({ setFilteredRecipes }) => {
       <CSSTransition
         nodeRef={searchRef}
         in={searchVisible}
-        timeout={3000}
+        timeout={500}
         classNames="searchtransition"
         appear
         unmountOnExit

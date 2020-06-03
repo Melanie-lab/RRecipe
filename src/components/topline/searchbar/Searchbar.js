@@ -8,6 +8,8 @@ const Searchbar = React.forwardRef((props, ref) => {
   const [searchinput, setSearchinput] = React.useState("");
   const history = useHistory();
 
+  console.log(setFilteredRecipes);
+
   const handleChange = (event) =>
     setSearchinput(event.currentTarget.value.toLocaleLowerCase());
 
@@ -21,8 +23,6 @@ const Searchbar = React.forwardRef((props, ref) => {
       pathname: "/recipes",
       search: `?search=${encodeURIComponent(searchinput)}`, //useLocation()
     });
-
-    console.log(recipeDataContext);
   };
 
   return (
