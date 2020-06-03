@@ -1,16 +1,29 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "./_allrecipes.scss";
 import { Link } from "react-router-dom";
 import { recipeDataContext } from "../App";
-
-/* import data from "../../data/recipes.json"; */
+import recipesJSON from "../../data/recipes.json";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Switch from "@material-ui/core/Switch";
 
 const AllRecipes = () => {
   const { filteredRecipes: recipes } = useContext(recipeDataContext);
+  const [check, setCheck] = useState(false);
 
   return (
     <div>
       <h2>Recipes:</h2>
+      <FormControlLabel
+        control={
+          <Switch
+            checked={check}
+            onChange={() => setCheck(!check)}
+            name="checkedA"
+            color="default"
+          />
+        }
+        label="Including static data"
+      />
       <p>
         Yummie recipes found: <span>{recipes.length}</span>
       </p>
@@ -27,7 +40,7 @@ const ShowRecipes = ({ recipes }) => {
   ));
 };
 
-const Recipe = ({ name, id, image }) => {
+export const Recipe = ({ name, id, image }) => {
   return (
     <div className="recipecard">
       <h3 className="recipename">{name}</h3>
@@ -46,3 +59,9 @@ const Recipe = ({ name, id, image }) => {
 };
 
 export default AllRecipes;
+
+let item;
+for (var i = 0; i < localStorage.length; i++) {
+  item = localStorage.getItem(localStorage.key(i));
+  recipesJSON.push(item);
+}

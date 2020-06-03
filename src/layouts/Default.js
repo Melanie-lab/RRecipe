@@ -11,7 +11,7 @@ const DefaultLayout = ({ children }) => {
     <div className="ui container">
       <toggleNavContext.Provider value={navValue}>
         <Topline />
-        <main onClick={() => setNavVisible(false)}>{children}</main>
+        <main /* onClick={() => setNavVisible(false)} */>{children}</main>
       </toggleNavContext.Provider>
       <footer className="footer"></footer>
     </div>

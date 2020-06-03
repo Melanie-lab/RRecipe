@@ -1,10 +1,5 @@
 @import "../../var";
 
-.new_recipe_container {
-  border-radius: 10px;
-  padding: 0.5rem 1rem;
-}
-
 .new_recipe_form {
   display: flex;
   flex-direction: column;
@@ -12,6 +7,82 @@
 
 .new_recipe_form label {
   margin-top: 1rem;
+  font-size: 0.8125rem;
+}
+
+.new_recipe_form input,
+select.category,
+.ingredient select {
+  margin-bottom: 0.7rem;
+  margin-top: 0.2rem;
+  height: 31px;
+  width: 100%;
+  border: 1px solid map-get($colors, main-brown);
+  padding-left: 5px;
+  background-color: map-get($colors, main-white);
+}
+
+div.ingredient {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.9rem;
+}
+
+div.ingredient div {
+  display: flex;
+  flex-direction: column;
+}
+
+input.amount {
+  width: 60px;
+}
+
+input.unit {
+  width: 50px;
+}
+
+.add_ingr,
+.remove_ingr {
+  background-color: map-get($colors, main-white);
+  margin: 1rem auto;
+  height: 31px;
+}
+
+.remove_ingr {
+  margin-left: 1rem;
+}
+
+select:invalid {
+  color: map-get($colors, main-grey);
+}
+
+.selectfield {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: baseline;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  background-color: inherit;
+}
+
+.selectfield p,
+.selectfield label {
+  margin: 0;
+}
+
+.selectfield select {
+  margin: 0 0.5rem 0 1rem;
+}
+
+.new_recipe_form textarea {
+  border: 1px solid map-get($colors, main-brown);
+}
+
+.instructions {
+  display: flex;
+  flex-direction: column;
 }
 
 .submit-button {
@@ -21,77 +92,4 @@
   height: 35px;
   margin-top: 1.5rem;
   border-radius: 5px;
-}
-
-.new_recipe_form input,
-.category {
-  margin-bottom: 0.7rem;
-  margin-top: 0.2rem;
-  height: 31px;
-  width: 100%;
-  border: 1px solid map-get($colors, main-brown);
-  padding-left: 5px;
-}
-
-.selectfield {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-  background-color: inherit;
-}
-
-.selectfield label {
-  margin-top: 0;
-}
-
-.new_recipe_form textarea {
-  border: 1px solid map-get($colors, main-brown);
-}
-
-.new_recipe_form hr {
-  margin-top: 1rem;
-  border: 0.5px solid map-get($colors, main-black);
-  width: 100%;
-}
-
-.ingredient_div {
-  display: flex;
-  font-size: 0.9rem;
-}
-
-.ingredient_div input {
-  width: 100%;
-}
-
-.ingredient_amount_div {
-  width: 80px;
-  margin: 0 0.5rem;
-}
-
-.ingredient_unit_div select {
-  background-color: inherit;
-  height: 31px;
-  margin-top: 3px;
-}
-
-.form_ingredients button {
-  margin-right: 0.5rem;
-  height: 25px;
-  width: 25px;
-  margin-top: 3px;
-  border-radius: 50%;
-  color: map-get($colors, main-white);
-  font-weight: 800;
-  border: 1px solid map-get($colors, main-black);
-  font-size: 18px;
-}
-
-.plus {
-  background-color: map-get($colors, main-green);
-}
-
-.min {
-  background-color: map-get($colors, main-red);
 }

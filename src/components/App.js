@@ -3,11 +3,13 @@ import { Switch, Route, useLocation } from "react-router-dom";
 import DefaultLayout from "../layouts/Default";
 import Welcome from "./welcome_page/Welcome";
 import AllRecipes from "./allrecipes/Allrecipes";
-import Newrecipe from "./newrecipe/Newrecipe";
+import FormikNewrecipe from "./newrecipe/FormikNewRecipe";
 import recipeData from "../data/recipes.json";
+import data from "../data/Data";
 import RecipeDetails from "./allrecipes/recipedetails/Recipedetails";
 import "./_app.scss";
 import { animated, useTransition } from "react-spring";
+import Categories from "./allrecipes/categories/Categories";
 
 export const recipeDataContext = React.createContext(recipeData);
 
@@ -33,13 +35,13 @@ const App = () => {
         <Switch location={item}>
           <Route path="/recipe/new" exact>
             <DefaultLayout>
-              <Newrecipe />
+              <FormikNewrecipe />
             </DefaultLayout>
           </Route>
 
-          <Route path="/recipes/:category">
+          <Route path={`/recipes/:category`}>
             <DefaultLayout>
-              <div>Unterseite für die Rezepte Kategorien</div>
+              <Categories />
             </DefaultLayout>
           </Route>
 

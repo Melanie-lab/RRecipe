@@ -2,6 +2,7 @@
   {
     "name": "Tal’s Tahini “bread pudding”",
     "id": "tahini-bread-pudding",
+    "category": "desert",
     "description": "A delicious baked dessert that takes 5 minutes to make!",
     "tag": ["Dessert"],
     "image": "http://forkgasm.com/images/bread-pudding.png",
@@ -69,6 +70,7 @@
   {
     "name": "Grand Marnier & Coffee Ice Cream",
     "id": "grand-marnier-coffee-ice-cream",
+    "category": "desert",
     "description": "Easy and decadent!",
     "tag": ["Dessert", "Ice Cream"],
     "ingredient": [
@@ -136,6 +138,7 @@
     "image": "http://forkgasm.com/images/carbonara.jpg",
     "name": "Turnip Noodle Carbonara",
     "id": "turnip-carbonara",
+    "category": "maindish",
     "description": "A healthier version of the classic dish that tastes just as good!",
     "tag": ["Bacon"],
     "ingredient": [
@@ -204,6 +207,7 @@
     "image": "http://forkgasm.com/images/40813912_2213541505597183_7740637805202109577_n.jpg",
     "name": "Spiced lamb chops with mint-mango sauce",
     "id": "spiced-lamb-chops-with-mint-mango-sauce",
+    "category": "maindish",
     "description": "Delicious, refreshing, and super quick to make!",
     "tag": ["Lamb"],
     "ingredient": [
@@ -325,6 +329,7 @@
   {
     "name": "Papoutsakia",
     "id": "papoutsakia",
+    "category": "maindish",
     "description": "A traditional Greek dish that tastes very similar to moussaka, but is much quicker to cook. Fun fact: Papoutsakia in Greek means \"little shoes\" and a portion usually has two. However, when cooking with large American eggplants, you'll likely find that one per portion is enough.",
     "tag": ["Greek"],
     "ingredient": [
@@ -469,6 +474,7 @@
     "image": "http://forkgasm.com/images/gambas.png",
     "name": "Gambas al Ajillo",
     "id": "gambas-al-ajillo",
+    "category": "entree",
     "description": "Quick and garlicky!",
     "tag": ["Seafood", "Spanish"],
     "ingredient": [
@@ -532,6 +538,7 @@
   {
     "name": "Shakshuka",
     "id": "shakshuka",
+    "category": "entree",
     "description": "Breakfast of champions (one of them)",
     "tag": ["Arabic", "Israeli", "Breakfast"],
     "ingredient": [
@@ -670,6 +677,7 @@
   {
     "name": "Real Caesar Salad",
     "id": "real-caesar-salad",
+    "category": "entree",
     "description": "Based on the original 1920's Italian-American table-side recipe",
     "tag": ["Italian-American", "Salad"],
     "image": "https://www.noodles.com/wp-content/uploads/2018/03/chicken-caesar-1050x811.png",
@@ -756,6 +764,7 @@
     "image": "http://forkgasm.com/images/fathead-pineapple.jpg",
     "name": "Fathead Pineapple Pizza",
     "id": "fathead-pineapple-pizza",
+    "category": "maindish",
     "description": "Low carb and delicious!",
     "tag": [],
     "ingredient": [],
@@ -928,6 +937,7 @@
     "image": "http://forkgasm.com/images/mushrooms.jpg",
     "name": "Garlic mushrooms a la crème with lardons and green pepper",
     "id": "garlic-mushrooms-a-la-creme-with-lardons-and-green-pepper",
+    "category": "maindish",
     "description": "Not the most photogenic dish, but really easy, quick and delicious!",
     "tag": [],
     "ingredient": [
@@ -1032,6 +1042,7 @@
     "image": "http://forkgasm.com/images/chicken-liver-pate.jpg",
     "name": "Chicken Liver Pâté",
     "id": "chicken-liver-pate",
+    "category": "entree",
     "description": "Rich and creamy, delicious on bread or even on its own",
     "tag": ["Chicken", "Offal"],
     "ingredient": [
@@ -1103,6 +1114,7 @@
     "image": "http://forkgasm.com/images/htapodi-krasato.jpg",
     "name": "Octopus in Wine",
     "id": "octopus-in-wine",
+    "category": "maindish",
     "description": "A traditional Greek dish (Htapodi Krasato).",
     "tag": ["Greek", "Stew", "Seafood"],
     "ingredient": [
@@ -1167,6 +1179,7 @@
     "image": "http://forkgasm.com/images/salmon-sous-vide.jpg",
     "name": "Sous Vide Salmon Teriyaki",
     "id": "salmon-teriyaki",
+    "category": "maindish",
     "description": "Tender, refreshing and very easy to make",
     "tag": ["Asian", "Seafood", "Sous Vide"],
     "ingredient": [
@@ -1241,6 +1254,7 @@
   {
     "image": "http://forkgasm.com/images/sfouggato.png",
     "name": "Sfouggato",
+    "category": "entree",
     "description": "A Lesbian delicacy that is super easy to make and can be eaten hot or cold.",
     "tag": ["Greek"],
     "id": "sfouggato",
@@ -1327,6 +1341,7 @@
   },
   {
     "name": "Khoresht Karafs",
+    "category": "entree",
     "description": "A delicious Persian stew with beef and celery.",
     "ingredient": [
       {
@@ -1421,6 +1436,7 @@
   {
     "image": "http://forkgasm.com/images/cheesecake.png",
     "name": "No-Bake Strawberry Cheesecake",
+    "category": "desert",
     "description": "A delicious low carb treat!",
     "tag": ["Dessert"],
     "ingredient": [],
@@ -1530,6 +1546,7 @@
   {
     "image": "http://forkgasm.com/images/curried-beef-stew.jpg",
     "name": "Curried Beef Stew",
+    "category": "maindish",
     "description": "Spicy, complex, and very flavorful, this Thai-inspired curry is perfect for cold winter nights.",
     "tag": ["Thai", "Stew", "Beef"],
     "ingredient": [

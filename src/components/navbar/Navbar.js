@@ -8,7 +8,7 @@ import { useClickAway } from "react-use";
 const Navbar = () => {
   const { navVisible, setNavVisible } = useContext(toggleNavContext);
   const fadeIn = useSpring({
-    transform: navVisible ? `translate3d(-5%,0,0)` : `translate3d(110%,0,0)`,
+    transform: navVisible ? `translate3d(0,0,0)` : `translate3d(-110%,0,0)`,
   });
   const ref = useRef(null);
   useClickAway(ref, () => {
@@ -23,10 +23,9 @@ const Navbar = () => {
           <hr></hr>
           <NaviLink to="/recipes" linktext="See all recipes" />
           <ul>
-            <NaviLink to="/recipes/fish" linktext="Fish" />
-            <NaviLink to="/recipes/meat" linktext="Meat" />
-            <NaviLink to="/recipes/Veggie" linktext="Veggie" />
-            <NaviLink to="/recipes/Desert" linktext="Desert" />
+            <NaviLink to="/recipes/desert" linktext="Desert" />
+            <NaviLink to="/recipes/maindish" linktext="Main dish" />
+            <NaviLink to="/recipes/entree" linktext="Entrée" />
           </ul>
           <hr></hr>
           <NaviLink to="/recipe/new" linktext="Add new recipe" />
