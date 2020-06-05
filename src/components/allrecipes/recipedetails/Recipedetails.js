@@ -1,13 +1,25 @@
 import React, { useState, useRef } from "react";
-import recipes from "../../../data/recipes.json";
+import recipes from "../../../data/Data";
 import { useParams } from "react-router-dom";
 import "./_recipedetails.scss";
+import { useGetSetState } from "react-use";
 
 const RecipeDetails = () => {
   let { id: recipeId } = useParams();
-  const portionsRef = React.useRef();
+  const portionsRef = React.useRef(null);
   const [portion, setPortion] = useState(1);
+
   const details = recipes.find(({ id }) => id === recipeId);
+  let initAmount = details.ingredient.amount;
+  const [calcAmount, setCalcAmount] = useState(initAmount);
+
+  const handleCalculation = (event) => {
+    event.preventDefault();
+    setPortion(portionsRef.current.value);
+    setCalcAmount(
+      details.ingredient.map((ingr) => Number(ingr.amount) * Number(portion))
+    );
+  };
 
   const Ingredient = () => {
     return details.ingredient.map((e, i) => (
@@ -30,15 +42,14 @@ const RecipeDetails = () => {
   return (
     <div className="rdetails">
       <h2>{details.name}</h2>
-      <p>{details.description}</p>
       <form>
         <label htmlFor="portions">How many portions do you want cook?</label>
         <select
           ref={portionsRef}
           name="portions"
           id="portions"
-          /* value={portion} */
-          /*   onChange={setPortion(event.target.elements.select.value)} */
+          /*   value={portion}
+          onChange={setPortion(event.target.value)} */
         >
           <option value="1">1</option>
           <option value="2">2</option>
@@ -57,6 +68,9 @@ const RecipeDetails = () => {
           <option value="15">15</option>
           <option value="16">16</option>
         </select>
+        <button type="submit" onClick={handleCalculation}>
+          Calculate
+        </button>
       </form>
       <Ingredient />
       <div className="arrowbtns">

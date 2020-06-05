@@ -13,8 +13,6 @@ import Categories from "./allrecipes/categories/Categories";
 
 export const recipeDataContext = React.createContext(recipeData);
 
-console.log(recipeData);
-
 const App = () => {
   const [filteredRecipes, setFilteredRecipes] = React.useState(recipeData);
   const recipeValue = { filteredRecipes, setFilteredRecipes, recipeData };

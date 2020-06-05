@@ -1,0 +1,6 @@
+.tooltip {
+  min-width: 20px;
+  padding: 0.2rem;
+  font-size: 14px;
+  background-color: map-get($colors, main-grey);
+}

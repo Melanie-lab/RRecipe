@@ -7,7 +7,15 @@ import Switch from "@material-ui/core/Switch";
 
 const AllRecipes = () => {
   const { filteredRecipes: recipes } = useContext(recipeDataContext);
-  const [check, setCheck] = useState(false);
+  const [initialRecipes, setRecipes] = useState(recipes);
+  const [check, setCheck] = useState(true);
+
+  const handleCheck = () => {
+    setCheck(!check);
+    if (check) {
+      setRecipes(recipes.slice(17, recipes.length));
+    }
+  };
 
   return (
     <div>
@@ -16,7 +24,7 @@ const AllRecipes = () => {
         control={
           <Switch
             checked={check}
-            onChange={() => setCheck(!check)}
+            onChange={handleCheck}
             name="checkedA"
             color="default"
           />
@@ -26,20 +34,36 @@ const AllRecipes = () => {
       <p>
         Yummie recipes found: <span>{recipes.length}</span>
       </p>
-      <ShowRecipes recipes={recipes} />
+      <ShowRecipes
+        recipes={initialRecipes} /*  handleDelete={handleDelete}  */
+      />
     </div>
   );
 };
 
-const ShowRecipes = ({ recipes }) => {
+const ShowRecipes = ({ recipes /* , handleDelete */ }) => {
   return recipes.map((element, i) => (
     <div key={i} className="recipe_container">
-      <Recipe {...element} />
+      <Recipe {...element} /* handleDelete={handleDelete} */ />
     </div>
   ));
 };
 
 export const Recipe = ({ name, id, image }) => {
+  const { filteredRecipes: recipes } = useContext(recipeDataContext);
+  console.log(recipes);
+  const [initialRecipes, setRecipes] = useState(recipes);
+
+  const handleDelete = () => {
+    /*   const recipes = JSON.parse(localStorage.getItem("recipes")); */
+    const found = initialRecipes.findIndex((e) => e.id === id);
+    recipes.splice(found, 1);
+    console.log(initialRecipes);
+    setRecipes(initialRecipes);
+    localStorage.setItem("recipes", JSON.stringify([...initialRecipes]));
+
+    console.log(initialRecipes);
+  };
   return (
     <div className="recipecard">
       <h3 className="recipename">{name}</h3>
@@ -51,7 +75,9 @@ export const Recipe = ({ name, id, image }) => {
           Details
         </Link>
         <button className="edit">Edit</button>
-        <button>Delete</button>
+        <button className="delete" onClick={handleDelete}>
+          Delete
+        </button>
       </div>
     </div>
   );
