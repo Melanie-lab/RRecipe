@@ -51,18 +51,14 @@ const ShowRecipes = ({ recipes /* , handleDelete */ }) => {
 
 export const Recipe = ({ name, id, image }) => {
   const { filteredRecipes: recipes } = useContext(recipeDataContext);
-  console.log(recipes);
   const [initialRecipes, setRecipes] = useState(recipes);
-
+  console.log(recipes);
   const handleDelete = () => {
     /*   const recipes = JSON.parse(localStorage.getItem("recipes")); */
     const found = initialRecipes.findIndex((e) => e.id === id);
     recipes.splice(found, 1);
-    console.log(initialRecipes);
     setRecipes(initialRecipes);
     localStorage.setItem("recipes", JSON.stringify([...initialRecipes]));
-
-    console.log(initialRecipes);
   };
   return (
     <div className="recipecard">

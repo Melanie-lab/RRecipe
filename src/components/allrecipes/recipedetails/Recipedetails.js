@@ -1,31 +1,33 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import recipes from "../../../data/Data";
 import { useParams } from "react-router-dom";
 import "./_recipedetails.scss";
-import { useGetSetState } from "react-use";
 
 const RecipeDetails = () => {
   let { id: recipeId } = useParams();
   const portionsRef = React.useRef(null);
   const [portion, setPortion] = useState(1);
-
   const details = recipes.find(({ id }) => id === recipeId);
-  let initAmount = details.ingredient.amount;
-  const [calcAmount, setCalcAmount] = useState(initAmount);
+
+  const calcAmount = details.ingredient.map(
+    (ingr) => Number(ingr.amount) * Number(portion)
+  );
+  const [initialAmount, setAmount] = useState(calcAmount);
 
   const handleCalculation = (event) => {
     event.preventDefault();
     setPortion(portionsRef.current.value);
-    setCalcAmount(
-      details.ingredient.map((ingr) => Number(ingr.amount) * Number(portion))
-    );
+    const x = details.ingredient.map((ingr) => Number(ingr.amount) * portion);
+    setAmount(x);
   };
 
-  const Ingredient = () => {
+  console.log(initialAmount);
+
+  const Ingredient = ({ initialAmount }) => {
     return details.ingredient.map((e, i) => (
       <ul key={i} className="ingr_details">
         <li>
-          {e.amount}
+          {initialAmount}
           <span> </span>
           {e.unit}
           <span> </span>
@@ -72,7 +74,7 @@ const RecipeDetails = () => {
           Calculate
         </button>
       </form>
-      <Ingredient />
+      <Ingredient initialAmount={initialAmount} />
       <div className="arrowbtns">
         <button className="btn-left">Left</button>
         <button className="btn-right" onClick={handleRightClick}>
