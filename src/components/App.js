@@ -10,6 +10,7 @@ import RecipeDetails from "./allrecipes/recipedetails/Recipedetails";
 import "./_app.scss";
 import { animated, useTransition } from "react-spring";
 import Categories from "./allrecipes/categories/Categories";
+import Editrecipe from "./allrecipes/editrecipe/Editrecipe";
 
 export const recipeDataContext = React.createContext(recipeData);
 
@@ -33,9 +34,15 @@ const App = () => {
     <animated.div key={key} style={transition}>
       <recipeDataContext.Provider value={recipeValue}>
         <Switch location={item}>
+          <Route path="/recipes/edit/:id" exact>
+            <DefaultLayout>
+              <Editrecipe headline="Edit Recipe" submittext="Save changes" />
+            </DefaultLayout>
+          </Route>
+
           <Route path="/recipe/new" exact>
             <DefaultLayout>
-              <FormikNewrecipe />
+              <FormikNewrecipe headline="New Recipe" submittext="Submit" />
             </DefaultLayout>
           </Route>
 

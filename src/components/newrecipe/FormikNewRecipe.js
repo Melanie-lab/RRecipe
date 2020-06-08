@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Formik, Form, Field, FieldArray } from "formik";
 import "./_newrecipe.scss";
 import SelectTime from "./SelectTime";
+import Select from "react-select";
 
 const someIngr = [
   { name: "", amount: 0, unit: "-" },
@@ -13,14 +14,13 @@ const options = [
   { value: "Indian", label: "Indian" },
 ];
 
-const IngrList = () => {
+const IngrList = ({ headline, submittext }) => {
   let recipes = JSON.parse(localStorage.getItem("recipes"));
-
   const [initialRecipes, setRecipes] = useState(recipes);
 
   return (
     <div>
-      <h2>New recipe</h2>
+      <h2>{headline}</h2>
       <Formik
         initialValues={{
           name: "",
@@ -29,9 +29,7 @@ const IngrList = () => {
           category: "",
         }}
         onSubmit={(values) => {
-          console.log(values.name);
-          values.id = values.name.trim().toLowerCase();
-          console.log(values.id);
+          values.id = values.name.toLowerCase().trim();
           if (!initialRecipes) {
             localStorage.setItem("recipes", JSON.stringify([values], null));
           } else if (recipes.find((recipe) => recipe.name === values.name)) {
@@ -147,6 +145,7 @@ const IngrList = () => {
                         </div>
                       )}
                     </Field>
+                    {/*  <SelectTags /> */}
                   </div>
                   <div className="instructions">
                     <label htmlFor="instructions">Instructions: </label>
@@ -157,7 +156,7 @@ const IngrList = () => {
                     ></textarea>
                   </div>
                   <button className="submit-button" type="submit">
-                    Submit
+                    {submittext}
                   </button>
                 </div>
               )}
@@ -169,8 +168,19 @@ const IngrList = () => {
   );
 };
 
-/* const SelectTags = ({ options, field, form }) => (
-  <Select
+/* const SelectTags = ({ options, field, form }) => {
+  const tags = ["sweet", "bitter", "veggie", "persian"];
+  console.log(tags);
+  return (
+    <Select
+      defaultValue={[tags[2], tags[3]]}
+      isMulti
+      name="colors"
+      options={tags}
+      className="basic-multi-select"
+      classNamePrefix="select"
+    /> */
+/*   <Select
     options={options}
     isMulti
     name={field.name}
@@ -179,7 +189,8 @@ const IngrList = () => {
     }
     onChange={(option) => form.setFieldValue(field.name, option.value)}
     onBlur={field.onBlur}
-  />
-); */
+  /> */
+/*   );
+}; */
 
 export default IngrList;

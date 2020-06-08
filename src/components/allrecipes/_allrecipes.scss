@@ -32,3 +32,20 @@
   margin: 0 5px;
   text-shadow: 2px 2px 4px map-get($colors, main-grey);
 }
+
+.edit {
+  margin: auto 0.4rem;
+}
+
+.pagination ul {
+  display: flex;
+}
+
+.pagination li {
+  list-style-type: none;
+  display: inline;
+}
+
+.pagination a {
+  margin: auto 0.5rem;
+}

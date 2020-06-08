@@ -16,6 +16,12 @@ const Searchbar = React.forwardRef((props, ref) => {
     let f = recipeData.filter((data) => {
       return data.name.toLocaleLowerCase().includes(searchinput) && data.name;
     });
+    f = recipeData.filter((data) => {
+      return data.tag.filter((tags) => {
+        console.log(tags);
+        return tags.includes(searchinput) && tags.tag;
+      });
+    });
     setFilteredRecipes(f);
     history.push({
       pathname: "/recipes",
