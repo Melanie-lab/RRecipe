@@ -1,10 +1,5 @@
 @import "../../var";
 
-.new_recipe_container {
-  border-radius: 10px;
-  padding: 0.5rem 1rem;
-}
-
 .new_recipe_form {
   display: flex;
   flex-direction: column;
@@ -12,48 +7,89 @@
 
 .new_recipe_form label {
   margin-top: 1rem;
-}
-
-.submit-button {
-  background-color: map-get($colors, main-brown);
-  color: white;
-  width: 100px;
-  height: 35px;
-  margin-top: 1.5rem;
-  border-radius: 5px;
+  font-size: 0.8125rem;
 }
 
 .new_recipe_form input,
-.category {
+select.category,
+.ingredient select {
   margin-bottom: 0.7rem;
   margin-top: 0.2rem;
   height: 31px;
   width: 100%;
   border: 1px solid map-get($colors, main-brown);
   padding-left: 5px;
+  background-color: map-get($colors, main-white);
+}
+
+div.ingredient {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.9rem;
+}
+
+div.ingredient div {
+  display: flex;
+  flex-direction: column;
+}
+
+input.amount {
+  width: 60px;
+}
+
+input.unit {
+  width: 50px;
+}
+
+.add_ingr,
+.remove_ingr {
+  background-color: map-get($colors, main-white);
+  margin: 1rem auto;
+  height: 31px;
+}
+
+.remove_ingr {
+  margin-left: 1rem;
+}
+
+select:invalid {
+  color: map-get($colors, main-grey);
 }
 
 .selectfield {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-end;
+  align-items: baseline;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
+  background-color: inherit;
 }
 
+.selectfield p,
 .selectfield label {
-  margin-top: 0;
+  margin: 0;
+}
+
+.selectfield select {
+  margin: 0 0.5rem 0 1rem;
 }
 
 .new_recipe_form textarea {
   border: 1px solid map-get($colors, main-brown);
 }
 
-.new_recipe_form hr {
-  border: 1px solid red;
+.instructions {
+  display: flex;
+  flex-direction: column;
 }
 
-input.amount {
-  width: 30%;
-  margin-right: 10px;
+.submit-button {
+  background-color: map-get($colors, main-brown);
+  color: map-get($colors, main-white);
+  width: 100px;
+  height: 35px;
+  margin-top: 1.5rem;
+  border-radius: 5px;
 }

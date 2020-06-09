@@ -1,17 +1,16 @@
 @import "../../var";
 
 .navlinks {
-  box-shadow: 5px 5px 5px grey;
+  box-shadow: 5px 5px 5px map-get($colors, grey);
+  position: fixed;
+  z-index: 3;
+  background-color: map-get($colors, main-white);
+  height: 100%;
+  width: 75%;
 }
 
 .navlinks nav {
   display: block;
-  position: fixed;
-  left: 0;
-  z-index: 3;
-  background-color: map-get($colors, main-white);
-  height: 100vh;
-  width: 75vw;
 }
 
 .navlinks ul {

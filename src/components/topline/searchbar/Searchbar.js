@@ -8,8 +8,6 @@ const Searchbar = React.forwardRef((props, ref) => {
   const [searchinput, setSearchinput] = React.useState("");
   const history = useHistory();
 
-  console.log(setFilteredRecipes);
-
   const handleChange = (event) =>
     setSearchinput(event.currentTarget.value.toLocaleLowerCase());
 
@@ -17,6 +15,12 @@ const Searchbar = React.forwardRef((props, ref) => {
     event.preventDefault();
     let f = recipeData.filter((data) => {
       return data.name.toLocaleLowerCase().includes(searchinput) && data.name;
+    });
+    f = recipeData.filter((data) => {
+      return data.tag.filter((tags) => {
+        console.log(tags);
+        return tags.includes(searchinput) && tags.tag;
+      });
     });
     setFilteredRecipes(f);
     history.push({
@@ -45,10 +49,3 @@ const Searchbar = React.forwardRef((props, ref) => {
 });
 
 export default Searchbar;
-
-/* form validation:  const searchInputRef = React.useRef();
-ref={searchInputRef} 
-<div style={{ color: "red" }}>{error}</div>
-  const isLowerCase = searchinput === searchinput.toLowerCase();
-  const error = isLowerCase ? null : "Please use lower case";
-  disabled={Boolean(error)} */

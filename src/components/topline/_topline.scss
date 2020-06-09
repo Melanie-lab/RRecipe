@@ -2,8 +2,6 @@
 
 .topline-container {
   padding: 0.4rem 0.4rem 0 0.4rem;
-  position: relative;
-  box-shadow: 5px 5px 5px grey;
 }
 
 .topline {
@@ -44,16 +42,20 @@ h1 {
 .searchtransition-enter,
 .searchtransition-appear {
   opacity: 0;
+  transform: scale3d(0.1, 0.1, 0.1);
 }
 .searchtransition-enter-active,
 .searchtransition-appear-active {
   opacity: 1;
-  transition: opacity 3000ms;
+  transform: scale3d(1, 1, 1);
+  transition: transform 300ms ease-out;
 }
 .searchtransition-exit {
   opacity: 1;
+  transform: scale3d(1, 1, 1);
 }
 .searchtransition-exit-active {
   opacity: 0;
-  transition: opacity 3000ms;
+  transition: transform 300ms ease-in-out;
+  transform: scale3d(0.1, 0.1, 0.1);
 }
