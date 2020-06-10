@@ -1,23 +1,30 @@
 import React, { useContext, useState } from "react";
 import "./_allrecipes.scss";
 import { Link } from "react-router-dom";
-import { recipeDataContext } from "../App";
+/* import { recipeDataContext } from "../Statehandler"; */
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 import Pagination from "react-js-pagination";
+import DispatchContext from "../DispatchContext";
+import StateContext from "../StateContext";
 
 const AllRecipes = () => {
-  const { filteredRecipes: recipes } = useContext(recipeDataContext);
-  const [initialRecipes, setRecipes] = useState(recipes);
+  /*   const { filteredRecipeIds, recipes } = useContext(recipeDataContext); */
+  const appState = useContext(StateContext);
   const [check, setCheck] = useState(true);
   const [activePage, setActivePage] = useState(15);
 
   const handleCheck = () => {
-    setCheck(!check);
+    console.log("a");
+    /*     setCheck(!check);
     if (check) {
       setRecipes(recipes.slice(17, recipes.length));
-    }
+    } */
   };
+
+  const filteredRecipes = appState.filteredRecipeIds?.map((id) =>
+    appState.recipes.find((recipe) => recipe.id === id)
+  );
 
   return (
     <div>
@@ -34,10 +41,12 @@ const AllRecipes = () => {
         label="Including static data"
       />
       <p>
-        Yummie recipes found: <span>{recipes.length}</span>
+        Yummie recipes found: <span>{appState.recipes.length}</span>
       </p>
       <ShowRecipes
-        recipes={initialRecipes} /*  handleDelete={handleDelete}  */
+        recipes={
+          filteredRecipes !== undefined ? filteredRecipes : appState.recipes
+        } /*  handleDelete={handleDelete}  */
       />
       <div>
         <Pagination
@@ -62,16 +71,26 @@ const ShowRecipes = ({ recipes /* , handleDelete */ }) => {
 };
 
 export const Recipe = ({ name, id, image }) => {
-  const { filteredRecipes: recipes } = useContext(recipeDataContext);
-  const [initialRecipes, setRecipes] = useState(recipes);
-
-  console.log(initialRecipes);
+  const appDispatch = useContext(DispatchContext);
+  const appState = useContext(StateContext);
+  /*   const {
+    recipes,
+    setRecipes,
+    filteredRecipeIds,
+    setFilteredRecipeIds,
+  } = useContext(recipeDataContext); */
 
   const handleDelete = () => {
+    const updatedFilteredRecipeIds = appState.filteredRecipeIds.filter(
+      (recipeId) => recipeId !== id
+    );
     /*   const recipes = JSON.parse(localStorage.getItem("recipes")); */
-    const found = initialRecipes.findIndex((e) => e.id === id);
-    setRecipes(initialRecipes.splice(found, 1));
-    /* location.reload(); */
+    const updatedR = appState.recipes.filter((recipe) => recipe.id !== id);
+    localStorage.setItem("recipes", JSON.stringify(updatedR));
+    appDispatch({ type: "setRecipes", value: updatedR });
+    /*    setRecipes(updatedR); */
+    appDispatch({ type: "filtereRecipeIds", value: updatedFilteredRecipeIds });
+    /* setFilteredRecipeIds(updatedFilteredRecipeIds); */
   };
 
   return (

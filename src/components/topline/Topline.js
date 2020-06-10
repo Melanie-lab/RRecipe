@@ -10,6 +10,7 @@ import { toggleNavContext } from "../../layouts/Default";
 const Topline = ({ setFilteredRecipes }) => {
   const { navVisible, setNavVisible } = useContext(toggleNavContext);
   const [searchVisible, setSearchVisible] = useState(false);
+
   const searchRef = useRef(null);
   useLockBodyScroll(navVisible);
 

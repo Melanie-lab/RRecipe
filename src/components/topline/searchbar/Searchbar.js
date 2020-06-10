@@ -1,10 +1,14 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import "./_searchbar.scss";
-import { recipeDataContext } from "../../App";
+/* import { recipeDataContext } from "../../Statehandler"; */
+import DispatchContext from "../../DispatchContext";
+import StateContext from "../../StateContext";
 
 const Searchbar = React.forwardRef((props, ref) => {
-  const { recipeData, setFilteredRecipes } = useContext(recipeDataContext);
+  const appDispatch = useContext(DispatchContext);
+  const appState = useContext(StateContext);
+  /*   const { recipes, setFilteredRecipeIds } = useContext(recipeDataContext); */
   const [searchinput, setSearchinput] = React.useState("");
   const history = useHistory();
 
@@ -13,16 +17,20 @@ const Searchbar = React.forwardRef((props, ref) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    let f = recipeData.filter((data) => {
-      return data.name.toLocaleLowerCase().includes(searchinput) && data.name;
-    });
-    f = recipeData.filter((data) => {
+    let f = appState.recipes.reduce((acc, data) => {
+      if (data.name.toLocaleLowerCase().includes(searchinput)) {
+        acc.push(data.id);
+      }
+      return acc;
+    }, []);
+    /*  f = recipeData.filter((data) => {
       return data.tag.filter((tags) => {
         console.log(tags);
         return tags.includes(searchinput) && tags.tag;
       });
-    });
-    setFilteredRecipes(f);
+    }); */
+    /*  setFilteredRecipeIds(f); */
+    appDispatch({ type: "filteredRecipeIds", value: f });
     history.push({
       pathname: "/recipes",
       search: `?search=${encodeURIComponent(searchinput)}`, //useLocation()

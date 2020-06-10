@@ -1,22 +1,17 @@
 import React from "react";
 import { Switch, Route, useLocation } from "react-router-dom";
+import { animated, useTransition } from "react-spring";
+
 import DefaultLayout from "../layouts/Default";
 import Welcome from "./welcome_page/Welcome";
 import AllRecipes from "./allrecipes/Allrecipes";
 import FormikNewrecipe from "./newrecipe/FormikNewRecipe";
-/* import recipeData from "../data/recipes.json"; */
-import recipeData from "../data/Data";
 import RecipeDetails from "./allrecipes/recipedetails/Recipedetails";
-import "./_app.scss";
-import { animated, useTransition } from "react-spring";
 import Categories from "./allrecipes/categories/Categories";
 import Editrecipe from "./allrecipes/editrecipe/Editrecipe";
-
-export const recipeDataContext = React.createContext(recipeData);
+import Statehandler from "./Statehandler";
 
 const App = () => {
-  const [filteredRecipes, setFilteredRecipes] = React.useState(recipeData);
-  const recipeValue = { filteredRecipes, setFilteredRecipes, recipeData };
   const location = useLocation();
 
   const transitions = useTransition(location, (location) => location.key, {
@@ -32,7 +27,7 @@ const App = () => {
 
   return transitions.map(({ item, props: transition, key }) => (
     <animated.div key={key} style={transition}>
-      <recipeDataContext.Provider value={recipeValue}>
+      <Statehandler>
         <Switch location={item}>
           <Route path="/recipes/edit/:id" exact>
             <DefaultLayout>
@@ -70,7 +65,7 @@ const App = () => {
             </DefaultLayout>
           </Route>
         </Switch>
-      </recipeDataContext.Provider>
+      </Statehandler>
     </animated.div>
   ));
 };
