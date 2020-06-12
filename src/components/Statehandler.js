@@ -15,6 +15,10 @@ const Statehandler = ({ children }) => {
     switch (action.type) {
       case "setRecipes":
         draft.recipes = action.value;
+        console.log(action.value);
+        return;
+      case "editRecipes":
+        draft.recipes.name = action.value;
         return;
       case "filteredRecipeIds":
         draft.filteredRecipeIds = action.value;

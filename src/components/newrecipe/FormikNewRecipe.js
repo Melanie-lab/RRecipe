@@ -27,6 +27,7 @@ const IngrList = ({ headline, submittext }) => {
           id: "",
           ingredient: someIngr,
           category: "",
+          tags: "",
         }}
         onSubmit={(values) => {
           values.id = values.name.toLowerCase().trim();
@@ -145,7 +146,7 @@ const IngrList = ({ headline, submittext }) => {
                         </div>
                       )}
                     </Field>
-                    {/*  <SelectTags /> */}
+                    <SelectTags />
                   </div>
                   <div className="instructions">
                     <label htmlFor="instructions">Instructions: </label>
@@ -168,6 +169,36 @@ const IngrList = ({ headline, submittext }) => {
   );
 };
 
+const SelectTags = () => {
+  const initialTags = ["Indian", "Persian", "Meat", "Veggie", "Spicy", "Fast"];
+  const [tagArray, setTagArray] = useState(initialTags);
+  const [tag, setTag] = useState([""]);
+
+  const submitHandler = () => {
+    console.log("");
+  };
+
+  const changeHandler = (event) => {
+    setTag(event.target.value);
+    const updateTags = tagArray.filter((tag) => tag.match(event.target.value));
+    setTagArray(updateTags);
+  };
+
+  return (
+    <div>
+      <label htlmfor="tags" name="tags">
+        Tags
+      </label>
+      <input name="tags" onChange={changeHandler} value={tag} />
+      <ul className="proposedtag">
+        {tagArray.map((tag, i) => (
+          <li key={i}>{tag}</li>
+        ))}
+      </ul>
+      <button>Add tag</button>
+    </div>
+  );
+};
 /* const SelectTags = ({ options, field, form }) => {
   const tags = ["sweet", "bitter", "veggie", "persian"];
   console.log(tags);

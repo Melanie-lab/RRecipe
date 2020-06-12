@@ -26,6 +26,8 @@ const AllRecipes = () => {
     appState.recipes.find((recipe) => recipe.id === id)
   );
 
+  console.log(filteredRecipes);
+
   return (
     <div>
       <h2>Recipes:</h2>
