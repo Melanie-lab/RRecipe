@@ -18,7 +18,7 @@ const Topline = ({ setFilteredRecipes }) => {
     <div className="topline-container searchtransition">
       <header className="topline">
         <MenuBtn onClick={() => setNavVisible(!navVisible)} />
-        <h1>Yummie</h1>
+        <h1>Zero Waste Recipes</h1>
         <button
           className="searchbtn"
           onClick={() => setSearchVisible(!searchVisible)}

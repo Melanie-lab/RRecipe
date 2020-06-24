@@ -30,7 +30,7 @@ const Searchbar = React.forwardRef((props, ref) => {
       });
     }); */
     /*  setFilteredRecipeIds(f); */
-    appDispatch({ type: "filteredRecipeIds", value: f });
+    appDispatch({ type: "storeFilteredRecipeIds", value: f });
     history.push({
       pathname: "/recipes",
       search: `?search=${encodeURIComponent(searchinput)}`, //useLocation()

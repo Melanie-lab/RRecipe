@@ -1,31 +1,34 @@
 import React, { useContext, useState } from "react";
 import "./editrecipe.scss";
-import FormikNewRecipe from "../../newrecipe/FormikNewRecipe";
 import StateContext from "../../StateContext";
 import { useParams } from "react-router-dom";
 import DispatchContext from "../../DispatchContext";
-/*
-
-import { useImmerReducer } from "use-immer" */
 
 const Editrecipe = () => {
   const appState = useContext(StateContext);
   const appDispatch = useContext(DispatchContext);
   let { id: recipeId } = useParams();
+  console.log(appState.recipes);
   const originalValue = appState.recipes.find(({ id }) => id === recipeId);
+  console.log(originalValue);
   const [editValue, setEditValue] = useState(originalValue);
 
-  const handleSubmit = () => {
-    appDispatch({ type: "setRecipes", value: editValue });
+  const handleChange = (event) => {
+    const updatedRecipe = {
+      ...editValue,
+      [event.target.name]: event.target.value,
+    };
+    setEditValue(updatedRecipe);
   };
 
-  const handleChange = (event) => {
-    setEditValue(event.target.value);
+  const handleSubmit = () => {
+    appDispatch({ type: "editRecipes", value: editValue });
   };
 
   const removeIngr = () => {
-    editValue.ingredient.pop();
-    setEditValue(editValue);
+    const removeIngr = editValue;
+    removeIngr.ingredient.pop();
+    setEditValue(removeIngr);
   };
 
   return (
@@ -38,7 +41,6 @@ const Editrecipe = () => {
           className="name"
           value={editValue.name}
           onChange={handleChange}
-          placeholder={originalValue.name}
         />
         <label htmlFor="category">Category</label>
         <select
@@ -52,7 +54,7 @@ const Editrecipe = () => {
           <option value="mainDish">Main dish</option>
           <option value="desert">Desert</option>
         </select>
-
+        <h3>Ingredients</h3>
         {editValue.ingredient.map((ingr, i) => (
           <div className="ingredient" key={i}>
             <div>
@@ -84,23 +86,26 @@ const Editrecipe = () => {
             </div>
           </div>
         ))}
-        <button
-          className="add_ingr"
-          type="button"
-          onClick={() =>
-            editValue.ingredient.push({
-              ingredient: "",
-              amount: "",
-              unit: "",
-            })
-          }
-        >
-          Add Ingredient
-        </button>
-        <button className="remove_ingr" type="button" onClick={removeIngr}>
-          Remove Ingredient
-        </button>
-
+        <div className="edit_recipe_buttons">
+          <button
+            className="add_ingr"
+            type="button"
+            onClick={() =>
+              editValue.ingredient.push({
+                ingredient: "",
+                amount: "",
+                unit: "",
+              })
+            }
+          >
+            Add Ingredient
+          </button>
+          <button className="remove_ingr" type="button" onClick={removeIngr}>
+            Remove Ingredient
+          </button>
+        </div>
+        <label htmlFor="instructions">Instructions</label>
+        <textarea></textarea>
         <button className="submit-button" type="submit">
           Save Changes
         </button>

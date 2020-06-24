@@ -1,34 +1,57 @@
-import React, { useState } from "react";
+import React, { useReducer } from "react";
 import recipeData from "../data/Data";
-import { useImmerReducer } from "use-immer";
 
 import DispatchContext from "./DispatchContext";
 import StateContext from "./StateContext";
 
+console.log(recipeData);
 const Statehandler = ({ children }) => {
   const initialState = {
     recipes: recipeData,
-    filteredRecipeIds: [],
+    filteredRecipeIds: null,
   };
 
-  const reducer = (draft, action) => {
+  const reducer = (state, action) => {
+    console.log("reducer", action.value);
+    console.log("state", state);
     switch (action.type) {
       case "setRecipes":
-        draft.recipes = action.value;
-        console.log(action.value);
-        return;
+        return {
+          ...state,
+          recipes: action.value,
+        };
       case "editRecipes":
-        draft.recipes.name = action.value;
-        return;
-      case "filteredRecipeIds":
-        draft.filteredRecipeIds = action.value;
-        return;
+        return {
+          ...state,
+          recipes: action.value,
+        };
+      case "storeFilteredRecipeIds":
+        return { ...state, filteredRecipeIds: action.value };
+      case "deleteRecipes":
+        return {
+          recipes: state.recipes.filter((recipe) => recipe.id !== action.value),
+          /* localStorage.setItem("recipes", JSON.stringify(updatedR)) */
+        };
+      case "storeRecipes":
+        return {
+          ...state,
+          recipes: action.value,
+        };
+      case "toggleStaticData":
+        return (
+          action.value && {
+            recipes: state.recipes.filter(
+              (recipe) => recipe.step === undefined
+            ),
+          }
+        );
+
       default:
         return state;
     }
   };
 
-  const [state, dispatch] = useImmerReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
     <StateContext.Provider value={state}>
@@ -41,20 +64,7 @@ const Statehandler = ({ children }) => {
 
 export default Statehandler;
 
-/* export const recipeDataContext = React.createContext();
-
-const Statehandler = ({ children }) => {
-  const [recipes, setRecipes] = useState(recipeData);
-  const [filteredRecipeIds, setFilteredRecipeIds] = useState(null);
-  const recipeValue = {
-    filteredRecipeIds,
-    setFilteredRecipeIds,
-    recipes,
-    setRecipes,
-  };
-  return (
-    <recipeDataContext.Provider value={recipeValue}>
-      {children}
-    </recipeDataContext.Provider>
-  );
-}; */
+/* if (state.filteredRecipeIds !== null) {
+  state.filteredRecipeIds.filter((recipeId) => recipeId !== id) 
+} 
+ */

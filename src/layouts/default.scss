@@ -6,11 +6,12 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: "Roboto", sans-serif;
+  font-stretch: expanded;
+  color: map-get($colors, main-grey);
   overflow-y: scroll;
   overflow-x: hidden;
+  width: 100vw;
 }
 
 code {
@@ -20,6 +21,13 @@ code {
 
 .ui {
   background-color: map-get($colors, $key: main-white);
+}
+
+h1,
+h2,
+h3 {
+  color: map-get($colors, main-brown);
+  font-family: oregano;
 }
 
 .container {

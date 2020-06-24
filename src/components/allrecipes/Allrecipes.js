@@ -11,22 +11,22 @@ import StateContext from "../StateContext";
 const AllRecipes = () => {
   /*   const { filteredRecipeIds, recipes } = useContext(recipeDataContext); */
   const appState = useContext(StateContext);
+  const appDispatch = useContext(DispatchContext);
   const [check, setCheck] = useState(true);
   const [activePage, setActivePage] = useState(15);
 
   const handleCheck = () => {
-    console.log("a");
-    /*     setCheck(!check);
+    console.log(check);
+    setCheck(!check);
     if (check) {
-      setRecipes(recipes.slice(17, recipes.length));
-    } */
+      appDispatch({ type: "toggleStaticData", value: "check" });
+      /*  setRecipes(recipes.slice(17, recipes.length)); */
+    }
   };
 
-  const filteredRecipes = appState.filteredRecipeIds?.map((id) =>
+  const filteredRecipes = appState.storeFilterRecipeIds?.map((id) =>
     appState.recipes.find((recipe) => recipe.id === id)
   );
-
-  console.log(filteredRecipes);
 
   return (
     <div>
@@ -48,7 +48,7 @@ const AllRecipes = () => {
       <ShowRecipes
         recipes={
           filteredRecipes !== undefined ? filteredRecipes : appState.recipes
-        } /*  handleDelete={handleDelete}  */
+        }
       />
       <div>
         <Pagination
@@ -64,35 +64,22 @@ const AllRecipes = () => {
   );
 };
 
-const ShowRecipes = ({ recipes /* , handleDelete */ }) => {
+const ShowRecipes = ({ recipes }) => {
   return recipes.map((element, i) => (
     <div key={i} className="recipe_container">
-      <Recipe {...element} /* handleDelete={handleDelete} */ />
+      <Recipe {...element} />
     </div>
   ));
 };
 
 export const Recipe = ({ name, id, image }) => {
   const appDispatch = useContext(DispatchContext);
-  const appState = useContext(StateContext);
-  /*   const {
-    recipes,
-    setRecipes,
-    filteredRecipeIds,
-    setFilteredRecipeIds,
-  } = useContext(recipeDataContext); */
 
   const handleDelete = () => {
-    const updatedFilteredRecipeIds = appState.filteredRecipeIds.filter(
-      (recipeId) => recipeId !== id
-    );
-    /*   const recipes = JSON.parse(localStorage.getItem("recipes")); */
-    const updatedR = appState.recipes.filter((recipe) => recipe.id !== id);
-    localStorage.setItem("recipes", JSON.stringify(updatedR));
-    appDispatch({ type: "setRecipes", value: updatedR });
-    /*    setRecipes(updatedR); */
-    appDispatch({ type: "filtereRecipeIds", value: updatedFilteredRecipeIds });
-    /* setFilteredRecipeIds(updatedFilteredRecipeIds); */
+    appDispatch({
+      type: "deleteRecipes",
+      value: id,
+    });
   };
 
   return (
@@ -102,18 +89,38 @@ export const Recipe = ({ name, id, image }) => {
         <img src={image} alt={name} />
       </figure>
       <div className="card_icons">
-        <Link to={`/recipe/${id}`} className="details">
-          Details
-        </Link>
-        <Link to={`/recipes/edit/${id}`} className="edit">
-          Edit
-        </Link>
-        <button className="delete" onClick={handleDelete}>
-          Delete
-        </button>
+        <div>
+          <Link to={`/recipe/${id}`} className="details">
+            Details
+          </Link>
+        </div>
+        <div>
+          <Link to={`/recipes/edit/${id}`} className="edit">
+            Edit
+          </Link>
+        </div>
+        <div>
+          <button className="delete" onClick={handleDelete}>
+            Delete
+          </button>
+        </div>
       </div>
     </div>
   );
 };
 
 export default AllRecipes;
+
+/*     if (appState.filteredRecipeIds !== null) {
+      const updatedFilteredRecipeIds = appState.filteredRecipeIds.filter(
+        (recipeId) => recipeId !== id
+      );
+      appDispatch({
+        type: "filtereRecipeIds",
+        value: updatedFilteredRecipeIds,
+      });
+    }
+      const recipes = JSON.parse(localStorage.getItem("recipes")); 
+    const updatedR = appState.recipes.filter((recipe) => recipe.id !== id);
+    localStorage.setItem("recipes", JSON.stringify(updatedR));
+    appDispatch({ type: "setRecipes", value: updatedR }); */

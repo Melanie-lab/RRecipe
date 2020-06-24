@@ -1,0 +1,12 @@
+@import "../../var";
+
+.about img {
+  width: 100%;
+}
+
+.about p {
+  background-color: map-get($colors, main-grey);
+  color: map-get($colors, main-white);
+  padding: 1rem;
+  border-radius: 10px;
+}

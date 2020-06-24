@@ -21,6 +21,7 @@ const Navbar = () => {
       <nav>
         <ul>
           <NaviLink to="/" linktext="Home" />
+          <NaviLink to="/about" linktext="About" />
           <hr></hr>
           <NaviLink to="/recipes" linktext="See all recipes" />
           <ul>
