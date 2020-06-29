@@ -6,7 +6,7 @@
 }
 
 .recipecard {
-  border: 1px solid map-get($colors, main-white);
+  border: 1px solid map-get($colors, main-brown);
   border-radius: 5px;
   margin-top: 1rem;
   padding: 1rem;
@@ -25,16 +25,29 @@
   max-width: 100%;
 }
 
-.card_icons button {
-  border-style: none;
-  background-color: map-get($colors, main-brown);
-  color: white;
+.card_icons div {
   margin: 0 5px;
+}
+
+.edit,
+.details {
+  text-decoration: none;
+  color: map-get($colors, main-brown);
   text-shadow: 2px 2px 4px map-get($colors, main-grey);
+}
+
+.delete {
+  border-style: none;
+  background-color: inherit;
+  color: map-get($colors, main-brown);
+  text-shadow: 2px 2px 4px map-get($colors, main-grey);
+  font-family: oregano;
+  font-size: 1rem;
 }
 
 .edit {
   margin: auto 0.4rem;
+  text-decoration: none;
 }
 
 .pagination ul {

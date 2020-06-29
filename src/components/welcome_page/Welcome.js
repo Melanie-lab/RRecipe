@@ -1,20 +1,23 @@
 import React, { useState } from "react";
 import "./welcome_page.scss";
 import { useSpring, animated } from "react-spring";
+import garden_image from "./garden.jpg";
 
 const Welcome = () => {
   const categories = [
-    "fish",
+    "common super-market",
     "desert",
     "veggie",
-    "arabic",
+    "vegan",
     "persian",
-    "indian",
+    "wochen-markt",
+    "garden",
   ];
+
   const renderMainButtons = (category, i) => {
     const angle = ((2 * Math.PI) / categories.length) * i;
-    const radius = 80;
-    const pos = 70;
+    const radius = 120;
+    const pos = 102;
     const topP = pos + Math.cos(angle) * radius;
     const leftP = pos + Math.sin(angle) * radius;
     return (
@@ -31,20 +34,27 @@ const Welcome = () => {
   return (
     <div className="welcome_page">
       <div className="welcome_text">
-        <h2>Welcome to Yummie</h2>
-        <p>Choose your favourite style:</p>
+        <h2>Welcome to Zero Waste Recipes</h2>
+        <img src={garden_image} alt="garden_image" />
+        <h3>Choose your Style:</h3>
       </div>
-      <div className="link_buttons">{categories.map(renderMainButtons)}</div>
+      <div className="position_relative">
+        <div className="green_circle">
+          <div className="link_buttons">
+            {categories.map(renderMainButtons)}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
 
 const MainButton = ({ className, link, text, style }) => {
   const [isToggled, setToggle] = useState(false);
-  const fade = useSpring({ fontSize: isToggled ? "0.5rem" : "2rem" });
+  const fade = useSpring({ fontSize: isToggled ? "0.5rem" : "1.75rem" });
 
   return (
-    <div>
+    <div className="circle">
       <animated.div style={fade}>
         <a
           className={className}

@@ -1,22 +1,18 @@
 import React from "react";
 import { Switch, Route, useLocation } from "react-router-dom";
+import { animated, useTransition } from "react-spring";
+
 import DefaultLayout from "../layouts/Default";
 import Welcome from "./welcome_page/Welcome";
 import AllRecipes from "./allrecipes/Allrecipes";
 import FormikNewrecipe from "./newrecipe/FormikNewRecipe";
-/* import recipeData from "../data/recipes.json"; */
-import recipeData from "../data/Data";
 import RecipeDetails from "./allrecipes/recipedetails/Recipedetails";
-import "./_app.scss";
-import { animated, useTransition } from "react-spring";
 import Categories from "./allrecipes/categories/Categories";
+import About from "./about/About";
 import Editrecipe from "./allrecipes/editrecipe/Editrecipe";
-
-export const recipeDataContext = React.createContext(recipeData);
+import Statehandler from "./Statehandler";
 
 const App = () => {
-  const [filteredRecipes, setFilteredRecipes] = React.useState(recipeData);
-  const recipeValue = { filteredRecipes, setFilteredRecipes, recipeData };
   const location = useLocation();
 
   const transitions = useTransition(location, (location) => location.key, {
@@ -30,49 +26,57 @@ const App = () => {
     leave: { opacity: 0, transform: "translate3d(-50%, 0, 0)" },
   });
 
-  return transitions.map(({ item, props: transition, key }) => (
-    <animated.div key={key} style={transition}>
-      <recipeDataContext.Provider value={recipeValue}>
-        <Switch location={item}>
-          <Route path="/recipes/edit/:id" exact>
-            <DefaultLayout>
-              <Editrecipe headline="Edit Recipe" submittext="Save changes" />
-            </DefaultLayout>
-          </Route>
+  return (
+    <Statehandler>
+      {transitions.map(({ item, props: transition, key }) => (
+        <animated.div key={key} style={transition}>
+          <Switch location={item}>
+            <Route path="/recipes/edit/:id" exact>
+              <DefaultLayout>
+                <Editrecipe headline="Edit Recipe" submittext="Save changes" />
+              </DefaultLayout>
+            </Route>
 
-          <Route path="/recipe/new" exact>
-            <DefaultLayout>
-              <FormikNewrecipe headline="New Recipe" submittext="Submit" />
-            </DefaultLayout>
-          </Route>
+            <Route path="/recipe/new" exact>
+              <DefaultLayout>
+                <FormikNewrecipe headline="New Recipe" submittext="Submit" />
+              </DefaultLayout>
+            </Route>
 
-          <Route path={`/recipes/:category`}>
-            <DefaultLayout>
-              <Categories />
-            </DefaultLayout>
-          </Route>
+            <Route path={`/recipes/:category`}>
+              <DefaultLayout>
+                <Categories />
+              </DefaultLayout>
+            </Route>
 
-          <Route path={`/recipe/:id`}>
-            <DefaultLayout>
-              <RecipeDetails />
-            </DefaultLayout>
-          </Route>
+            <Route path={`/recipe/:id`}>
+              <DefaultLayout>
+                <RecipeDetails />
+              </DefaultLayout>
+            </Route>
 
-          <Route path="/recipes">
-            <DefaultLayout>
-              <AllRecipes />
-            </DefaultLayout>
-          </Route>
+            <Route path="/recipes">
+              <DefaultLayout>
+                <AllRecipes />
+              </DefaultLayout>
+            </Route>
 
-          <Route path="/">
-            <DefaultLayout>
-              <Welcome />
-            </DefaultLayout>
-          </Route>
-        </Switch>
-      </recipeDataContext.Provider>
-    </animated.div>
-  ));
+            <Route path="/about">
+              <DefaultLayout>
+                <About />
+              </DefaultLayout>
+            </Route>
+
+            <Route path="/">
+              <DefaultLayout>
+                <Welcome />
+              </DefaultLayout>
+            </Route>
+          </Switch>
+        </animated.div>
+      ))}
+    </Statehandler>
+  );
 };
 
 export default App;

@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "./_navbar.scss";
 import { toggleNavContext } from "../../layouts/Default";
@@ -10,6 +10,7 @@ const Navbar = () => {
   const fadeIn = useSpring({
     transform: navVisible ? `translate3d(0,0,0)` : `translate3d(-110%,0,0)`,
   });
+
   const ref = useRef(null);
   useClickAway(ref, () => {
     setNavVisible(false);
@@ -20,6 +21,7 @@ const Navbar = () => {
       <nav>
         <ul>
           <NaviLink to="/" linktext="Home" />
+          <NaviLink to="/about" linktext="About" />
           <hr></hr>
           <NaviLink to="/recipes" linktext="See all recipes" />
           <ul>
@@ -38,12 +40,20 @@ const Navbar = () => {
 const NaviLink = ({ linktext, to }) => {
   const { setNavVisible } = useContext(toggleNavContext);
   const closeNav = () => setNavVisible(false);
+  const [mouseOver, setMouseOver] = useState(false);
+  const linkAnimation = useSpring({
+    transform: mouseOver ? `scale3d(2,2,2)` : `scale3d(1,1,1)`,
+  });
+
   return (
-    <li>
-      <Link onClick={closeNav} to={to}>
+    <animated.li style={linkAnimation}>
+      <Link
+        /* onMouseMove={console.log("mouse")}  */ onClick={closeNav}
+        to={to}
+      >
         {linktext}
       </Link>
-    </li>
+    </animated.li>
   );
 };
 

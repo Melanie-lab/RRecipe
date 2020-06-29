@@ -17,9 +17,10 @@ select.category,
   margin-top: 0.2rem;
   height: 31px;
   width: 100%;
-  border: 1px solid map-get($colors, main-brown);
+  border: 1px solid map-get($colors, main-white);
   padding-left: 5px;
-  background-color: map-get($colors, main-white);
+  background-color: map-get($colors, main-brown);
+  color: map-get($colors, main-white);
 }
 
 div.ingredient {
@@ -35,11 +36,11 @@ div.ingredient div {
 }
 
 input.amount {
-  width: 60px;
+  width: 80px;
 }
 
 input.unit {
-  width: 50px;
+  width: 70px;
 }
 
 .add_ingr,
@@ -47,6 +48,7 @@ input.unit {
   background-color: map-get($colors, main-white);
   margin: 1rem auto;
   height: 31px;
+  border: 1px solid map-get($colors, main-brown);
 }
 
 .remove_ingr {

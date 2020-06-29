@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { Formik, Form, Field, FieldArray } from "formik";
 import "./_newrecipe.scss";
 import SelectTime from "./SelectTime";
-import Select from "react-select";
+import DispatchContext from "../DispatchContext";
+import StateContext from "../StateContext";
+/* import * as Yup from "yup"; */
 
 const someIngr = [
   { name: "", amount: 0, unit: "-" },
@@ -15,8 +17,15 @@ const options = [
 ];
 
 const IngrList = ({ headline, submittext }) => {
-  let recipes = JSON.parse(localStorage.getItem("recipes"));
-  const [initialRecipes, setRecipes] = useState(recipes);
+  const appState = useContext(StateContext);
+  const appDispatch = useContext(DispatchContext);
+  /*   let recipes = JSON.parse(localStorage.getItem("recipes")); */
+  /*  const [initialRecipes, setRecipes] = useState(appState); */
+
+  /*   const validationSchema = Yup.object({
+    firstName: Yup.string().required("Required"),
+    lastName: Yup.string().required("Required"),
+  }); */
 
   return (
     <div>
@@ -27,21 +36,25 @@ const IngrList = ({ headline, submittext }) => {
           id: "",
           ingredient: someIngr,
           category: "",
+          tags: "",
         }}
         onSubmit={(values) => {
           values.id = values.name.toLowerCase().trim();
-          if (!initialRecipes) {
+          if (!appState.recipes) {
             localStorage.setItem("recipes", JSON.stringify([values], null));
-          } else if (recipes.find((recipe) => recipe.name === values.name)) {
+          } else if (
+            appState.recipes.find((recipe) => recipe.name === values.name)
+          ) {
             console.log("error");
           } else {
-            localStorage.setItem(
-              "recipes",
-              JSON.stringify([...recipes, values])
-            );
+            localStorage.setItem("recipes", JSON.stringify([values]));
           }
-          setRecipes(recipes);
+          appDispatch({
+            type: "storeRecipes",
+            value: { ...appState.recipes, values },
+          });
         }}
+        /*  validationSchema={{ validationSchema }} */
         children={({ values, handleChange, handleSubmit }) => (
           <Form className="new_recipe_form" onSubmit={handleSubmit}>
             <label htmlFor="name">Recipe name:</label>
@@ -98,7 +111,7 @@ const IngrList = ({ headline, submittext }) => {
                         </div>
                       </div>
                     ))}
-
+                  {console.log(arrayHelpers)}
                   <button
                     className="add_ingr"
                     type="button"
@@ -168,6 +181,36 @@ const IngrList = ({ headline, submittext }) => {
   );
 };
 
+/* const SelectTags = () => {
+  const initialTags = ["Indian", "Persian", "Meat", "Veggie", "Spicy", "Fast"];
+  const [tagArray, setTagArray] = useState(initialTags);
+  const [tag, setTag] = useState([""]);
+
+  const submitHandler = () => {
+    console.log("");
+  };
+
+  const changeHandler = (event) => {
+    setTag(event.target.value);
+    const updateTags = tagArray.filter((tag) => tag.match(event.target.value)? tag.);
+    setTagArray(updateTags);
+  };
+
+  return (
+    <div>
+      <label htlmfor="tags" name="tags">
+        Tags
+      </label>
+      <input name="tags" onChange={changeHandler} value={tag} />
+      <ul className="proposedtag">
+        {tagArray.map((tag, i) => (
+          <li key={i}>{tag}</li>
+        ))}
+      </ul>
+      <button>Add tag</button>
+    </div>
+  );
+}; */
 /* const SelectTags = ({ options, field, form }) => {
   const tags = ["sweet", "bitter", "veggie", "persian"];
   console.log(tags);

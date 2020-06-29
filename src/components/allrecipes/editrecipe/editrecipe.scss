@@ -1,0 +1,9 @@
+@import "../../../var";
+
+.edit_recipe_buttons {
+  display: flex;
+}
+
+.edit_recipe_buttons button {
+  border: 1px solid map-get($colors, main-brown);
+}

@@ -1,18 +1,35 @@
+@import "../../../var";
+
 .rdetails img {
   width: 100%;
 }
 
-.arrowbtn {
-  width: 100%;
+ol.ingr_details {
+  list-style-type: cjk-ideographic;
+}
+
+.rdetails button {
+  background-color: map-get($colors, main-brown);
+  color: map-get($colors, main-white);
+  width: 100px;
+  height: 35px;
+  border: none;
+  margin-left: 0;
+}
+
+.rdetails select {
+  background-color: map-get($colors, main-brown);
+  color: map-get($colors, main-white);
+  border: none;
+  height: 35px;
+  margin-right: 0;
+}
+
+label.portions {
+  margin-bottom: 1rem;
+}
+
+.portion_container {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-}
-
-.arrowbtns button {
-  border-radius: 50%;
-}
-
-.btn-right {
-  align-items: flex-end;
+  flex-direction: column;
 }

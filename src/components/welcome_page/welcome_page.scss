@@ -20,6 +20,30 @@
   border-radius: 50%;
   text-decoration: none;
   font-family: "oregano";
-  font-size: 1.75rem;
+  font-size: 1rem;
   position: absolute;
+  line-height: 0.8;
+}
+
+.circle {
+  margin: 2rem auto;
+}
+
+.green_circle {
+  border: 1px solid map-get($colors, main-brown);
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 5;
+  width: 280px;
+  height: 280px;
+}
+
+.welcome_page img {
+  width: 100%;
+  margin: 0;
+}
+
+.position_relative {
+  position: relative;
 }

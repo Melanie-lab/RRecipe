@@ -1,23 +1,32 @@
 import React, { useContext, useState } from "react";
 import "./_allrecipes.scss";
 import { Link } from "react-router-dom";
-import { recipeDataContext } from "../App";
+/* import { recipeDataContext } from "../Statehandler"; */
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 import Pagination from "react-js-pagination";
+import DispatchContext from "../DispatchContext";
+import StateContext from "../StateContext";
 
 const AllRecipes = () => {
-  const { filteredRecipes: recipes } = useContext(recipeDataContext);
-  const [initialRecipes, setRecipes] = useState(recipes);
+  /*   const { filteredRecipeIds, recipes } = useContext(recipeDataContext); */
+  const appState = useContext(StateContext);
+  const appDispatch = useContext(DispatchContext);
   const [check, setCheck] = useState(true);
   const [activePage, setActivePage] = useState(15);
 
   const handleCheck = () => {
+    console.log(check);
     setCheck(!check);
     if (check) {
-      setRecipes(recipes.slice(17, recipes.length));
+      appDispatch({ type: "toggleStaticData", value: "check" });
+      /*  setRecipes(recipes.slice(17, recipes.length)); */
     }
   };
+
+  const filteredRecipes = appState.storeFilterRecipeIds?.map((id) =>
+    appState.recipes.find((recipe) => recipe.id === id)
+  );
 
   return (
     <div>
@@ -34,10 +43,12 @@ const AllRecipes = () => {
         label="Including static data"
       />
       <p>
-        Yummie recipes found: <span>{recipes.length}</span>
+        Yummie recipes found: <span>{appState.recipes.length}</span>
       </p>
       <ShowRecipes
-        recipes={initialRecipes} /*  handleDelete={handleDelete}  */
+        recipes={
+          filteredRecipes !== undefined ? filteredRecipes : appState.recipes
+        }
       />
       <div>
         <Pagination
@@ -53,25 +64,22 @@ const AllRecipes = () => {
   );
 };
 
-const ShowRecipes = ({ recipes /* , handleDelete */ }) => {
+const ShowRecipes = ({ recipes }) => {
   return recipes.map((element, i) => (
     <div key={i} className="recipe_container">
-      <Recipe {...element} /* handleDelete={handleDelete} */ />
+      <Recipe {...element} />
     </div>
   ));
 };
 
 export const Recipe = ({ name, id, image }) => {
-  const { filteredRecipes: recipes } = useContext(recipeDataContext);
-  const [initialRecipes, setRecipes] = useState(recipes);
-
-  console.log(initialRecipes);
+  const appDispatch = useContext(DispatchContext);
 
   const handleDelete = () => {
-    /*   const recipes = JSON.parse(localStorage.getItem("recipes")); */
-    const found = initialRecipes.findIndex((e) => e.id === id);
-    setRecipes(initialRecipes.splice(found, 1));
-    /* location.reload(); */
+    appDispatch({
+      type: "deleteRecipes",
+      value: id,
+    });
   };
 
   return (
@@ -81,18 +89,38 @@ export const Recipe = ({ name, id, image }) => {
         <img src={image} alt={name} />
       </figure>
       <div className="card_icons">
-        <Link to={`/recipe/${id}`} className="details">
-          Details
-        </Link>
-        <Link to={`/recipes/edit/${id}`} className="edit">
-          Edit
-        </Link>
-        <button className="delete" onClick={handleDelete}>
-          Delete
-        </button>
+        <div>
+          <Link to={`/recipe/${id}`} className="details">
+            Details
+          </Link>
+        </div>
+        <div>
+          <Link to={`/recipes/edit/${id}`} className="edit">
+            Edit
+          </Link>
+        </div>
+        <div>
+          <button className="delete" onClick={handleDelete}>
+            Delete
+          </button>
+        </div>
       </div>
     </div>
   );
 };
 
 export default AllRecipes;
+
+/*     if (appState.filteredRecipeIds !== null) {
+      const updatedFilteredRecipeIds = appState.filteredRecipeIds.filter(
+        (recipeId) => recipeId !== id
+      );
+      appDispatch({
+        type: "filtereRecipeIds",
+        value: updatedFilteredRecipeIds,
+      });
+    }
+      const recipes = JSON.parse(localStorage.getItem("recipes")); 
+    const updatedR = appState.recipes.filter((recipe) => recipe.id !== id);
+    localStorage.setItem("recipes", JSON.stringify(updatedR));
+    appDispatch({ type: "setRecipes", value: updatedR }); */
