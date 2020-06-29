@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Topline from "../components/topline/Topline";
 import "./default.scss";
+import Navbar from "../components/navbar/Navbar";
 
 export const toggleNavContext = React.createContext(false);
 
@@ -12,7 +13,7 @@ const DefaultLayout = ({ children }) => {
     <div className="ui container">
       <toggleNavContext.Provider value={navValue}>
         <Topline />
-        <main /* onClick={() => setNavVisible(false)} */>{children}</main>
+        <main>{children}</main>
       </toggleNavContext.Provider>
       <footer className="footer"></footer>
     </div>

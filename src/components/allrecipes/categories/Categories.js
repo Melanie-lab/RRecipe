@@ -11,12 +11,22 @@ const Categories = () => {
     ({ category }) => category === recipeCategory
   );
 
-  return catMatch.map((e, i) => (
-    <div key={i}>
-      <h2>{catMatch.category}</h2>
-      <Recipe name={catMatch.name} {...e} />
+  const cat = catMatch[0].category;
+  const name = cat.replace(/^\w/, (d) => d.toUpperCase());
+
+  return (
+    <div>
+      <h2>{name}</h2>
+      <p>
+        Recipes found: <span>{catMatch.length}</span>
+      </p>
+      {catMatch.map((e, i) => (
+        <div key={i}>
+          <Recipe name={catMatch.name} {...e} />
+        </div>
+      ))}
     </div>
-  ));
+  );
 };
 
 export default Categories;

@@ -7,6 +7,7 @@ import { useClickAway } from "react-use";
 
 const Navbar = () => {
   const { navVisible, setNavVisible } = useContext(toggleNavContext);
+
   const fadeIn = useSpring({
     transform: navVisible ? `translate3d(0,0,0)` : `translate3d(-110%,0,0)`,
   });

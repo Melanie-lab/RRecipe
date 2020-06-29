@@ -7,6 +7,13 @@
   background-color: map-get($colors, main-white);
   height: 100%;
   width: 75%;
+  max-width: 300px;
+  @include desktop {
+    right: 10%;
+    border-right: none;
+    border-left: 1px solid map-get($colors, main-brown);
+    box-shadow: none;
+  }
 }
 
 .navlinks nav {

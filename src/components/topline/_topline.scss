@@ -2,6 +2,10 @@
 
 .topline-container {
   padding: 0.4rem 0.4rem 0 0.4rem;
+  @include desktop {
+    padding: 0;
+    margin: 0;
+  }
 }
 
 .topline {
@@ -9,15 +13,19 @@
   background-color: map-get($colors, main-white);
   display: flex;
   justify-content: space-between;
-  font-family: "Oregano";
   margin: 0 0.5rem;
   @include desktop {
     grid-column: 1 / span 4;
+    background-color: map-get($colors, main-grey);
+    margin: auto;
+    height: 80px;
+    padding: 0;
+    width: 80%;
   }
 }
 
 h1 {
-  margin: 0;
+  margin-left: 2rem;
 }
 
 .bar1,
@@ -30,6 +38,13 @@ h1 {
   transition: 0.4s;
 }
 
+.searchbar {
+  max-width: 300px;
+  @include desktop {
+    height: 40px;
+  }
+}
+
 .searchbtn {
   width: 39px;
   height: 39px;
@@ -37,6 +52,9 @@ h1 {
   background-size: cover;
   border: none;
   background-color: inherit;
+  @include desktop {
+    display: none;
+  }
 }
 
 .searchtransition-enter,
@@ -58,4 +76,29 @@ h1 {
   opacity: 0;
   transition: transform 300ms ease-in-out;
   transform: scale3d(0.1, 0.1, 0.1);
+}
+
+header .searchbar {
+  display: none;
+  @include desktop {
+    display: block;
+  }
+}
+
+header .searchbar label {
+  @include desktop {
+    color: white;
+  }
+}
+
+header .searchbar input {
+  @include desktop {
+    height: 37px;
+  }
+}
+
+button.menu {
+  @include desktop {
+    display: none;
+  }
 }

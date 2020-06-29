@@ -23,6 +23,7 @@ const Topline = ({ setFilteredRecipes }) => {
           className="searchbtn"
           onClick={() => setSearchVisible(!searchVisible)}
         ></button>
+        <Searchbar className="searchbar_desktop" />
       </header>
       <CSSTransition
         nodeRef={searchRef}
@@ -38,6 +39,7 @@ const Topline = ({ setFilteredRecipes }) => {
           role="link"
           aria-label="search"
           setFilteredRecipes={setFilteredRecipes}
+          className="serachbar_mobile"
         />
       </CSSTransition>
       <Navbar role="link" aria-label="menu" setNavVisible={setNavVisible} />

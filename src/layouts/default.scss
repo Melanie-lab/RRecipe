@@ -6,12 +6,13 @@
 
 body {
   margin: 0;
+  padding: 0;
   font-family: "Roboto", sans-serif;
   font-stretch: expanded;
-  color: map-get($colors, main-grey);
+  /*   color: map-get($colors, main-grey); */
   overflow-y: scroll;
   overflow-x: hidden;
-  width: 100vw;
+  width: 100%;
 }
 
 code {
@@ -21,6 +22,11 @@ code {
 
 .ui {
   background-color: map-get($colors, $key: main-white);
+  @include desktop {
+    background-color: map-get($colors, main-brown);
+    margin: 0;
+    padding: 0;
+  }
 }
 
 h1,
@@ -30,27 +36,41 @@ h3 {
   font-family: oregano;
 }
 
-.container {
-  width: 100vw;
-  height: 100vh;
+h2 {
+  letter-spacing: 2px;
+}
 
+h1 {
+  font-size: 1.55rem;
+  margin: auto 0;
   @include desktop {
-    display: grid;
-    grid-template-columns: 22% 26% 26% 26%;
-    grid-template-rows: 15% 70% 15%;
+    color: map-get($colors, main-white);
+    margin-top: 20px;
+    letter-spacing: 3px;
+  }
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  @include desktop {
+    /*   display: grid; */
+    /*     grid-template-columns: 22% 26% 26% 26%;
+    grid-template-rows: 15% 70% 15%; */
+    padding: 0;
   }
 }
 
 .sidebar {
   @include desktop {
-    grid-column: 1;
+    /*     grid-column: 1; */
   }
 }
 
 .footer {
   @include desktop {
-    grid-column: 1 / span 4;
-    grid-row: 3;
+    /*     grid-column: 1 / span 4;
+    grid-row: 3; */
   }
 
   background-color: #5c2626;
@@ -58,15 +78,18 @@ h3 {
 }
 
 main {
-  @include desktop {
-    grid-row: 2;
-    grid-column: 2 / span 3;
-  }
-
   z-index: 1;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   padding: 1rem;
+  @include desktop {
+    /*     grid-row: 2;
+    grid-column: 2 / span 3; */
+    background-color: map-get($colors, main-white);
+    width: 80%;
+    height: 80%;
+    margin: auto;
+  }
 }
 
 .white_container {
