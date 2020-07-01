@@ -16,7 +16,7 @@
   margin: 0 0.5rem;
   @include desktop {
     grid-column: 1 / span 4;
-    background-color: map-get($colors, main-grey);
+    background-color: map-get($colors, main-white);
     margin: auto;
     height: 80px;
     padding: 0;
@@ -26,6 +26,9 @@
 
 h1 {
   margin-left: 2rem;
+  @include desktop {
+    color: map-get($colors, main-brown);
+  }
 }
 
 .bar1,
@@ -87,13 +90,13 @@ header .searchbar {
 
 header .searchbar label {
   @include desktop {
-    color: white;
+    color: map-get($colors, $key: main-brown);
   }
 }
 
 header .searchbar input {
   @include desktop {
-    height: 37px;
+    height: 1.4rem;
   }
 }
 

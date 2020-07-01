@@ -44,9 +44,9 @@ h1 {
   font-size: 1.55rem;
   margin: auto 0;
   @include desktop {
-    color: map-get($colors, main-white);
-    margin-top: 20px;
+    margin-top: 32px;
     letter-spacing: 3px;
+    margin-left: 1rem;
   }
 }
 

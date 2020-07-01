@@ -3,7 +3,7 @@ import recipeData from "../data/Data";
 
 import DispatchContext from "./DispatchContext";
 import StateContext from "./StateContext";
-import { act } from "@testing-library/react";
+/* import { act } from "@testing-library/react"; */
 
 console.log(recipeData);
 const Statehandler = ({ children }) => {

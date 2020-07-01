@@ -35,7 +35,9 @@ const Welcome = () => {
     <div className="welcome_page">
       <div className="welcome_text">
         <h2>Welcome to Zero Waste Recipes</h2>
-        <img src={garden_image} alt="garden_image" />
+        <div className="img_wrapper">
+          <img src={garden_image} alt="garden_image" />
+        </div>
         <h3>Choose your Style:</h3>
       </div>
       <div className="position_relative">

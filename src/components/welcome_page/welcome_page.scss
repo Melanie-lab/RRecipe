@@ -47,3 +47,10 @@
 .position_relative {
   position: relative;
 }
+
+.img_wrapper {
+  @include desktop {
+    max-height: 150px;
+    overflow: hidden;
+  }
+}

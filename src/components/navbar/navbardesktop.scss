@@ -1,0 +1,49 @@
+@import "../../var";
+
+nav {
+  display: none;
+  @include desktop {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    margin: 0 auto;
+    background-color: map-get($colors, main-white);
+    position: relative;
+  }
+}
+
+.dropdown {
+  background-color: inherit;
+  border: none;
+  background-image: url("dropdown.png");
+  background-size: 13px 10px;
+  background-position: right;
+  background-repeat: no-repeat;
+  min-width: 80px;
+  margin: auto 1.4rem;
+  padding: auto 2rem;
+  font-size: 0.75rem;
+}
+
+nav a {
+  margin: 0 1.5rem;
+  text-decoration: none;
+  font-size: 0.75rem;
+}
+
+.recipesDropDown {
+  position: absolute;
+  top: 1rem;
+  left: 0;
+  color: black;
+  display: flex;
+  flex-direction: column;
+}
+
+.recipesDropDownDiv {
+  position: relative;
+}
+
+.recipesDropDownDiv a {
+  margin: 0;
+}

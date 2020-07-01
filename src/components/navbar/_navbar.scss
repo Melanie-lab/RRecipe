@@ -13,6 +13,7 @@
     border-right: none;
     border-left: 1px solid map-get($colors, main-brown);
     box-shadow: none;
+    display: none;
   }
 }
 
@@ -22,10 +23,18 @@
 
 .navlinks ul {
   list-style-type: none;
+  @include desktop {
+    display: flex;
+    margin: 0;
+  }
 }
 
 .navlinks li {
   margin: 1rem 0;
+  @include desktop {
+    margin: 1rem;
+    font-size: 12px;
+  }
 }
 
 .navlinks a {
