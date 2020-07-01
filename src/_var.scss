@@ -12,7 +12,7 @@ $fontsizes: (
 );
 
 $tablet-width: 768px;
-$desktop-width: 1024px;
+$desktop-width: 800px;
 
 @mixin tablet {
   @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width -1 px}) {

@@ -7,3 +7,8 @@
 .edit_recipe_buttons button {
   border: 1px solid map-get($colors, main-brown);
 }
+
+.edit_recipe {
+  max-width: 500px;
+  margin: auto;
+}

@@ -32,7 +32,7 @@ const Editrecipe = () => {
   };
 
   return (
-    <div>
+    <div className="edit_recipe">
       <h2>Edit Recipe</h2>
       <form className="new_recipe_form" onSubmit={handleSubmit}>
         <label htmlFor="name">Recipe name:</label>

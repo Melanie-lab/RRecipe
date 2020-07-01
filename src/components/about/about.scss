@@ -2,11 +2,14 @@
 
 .about img {
   width: 100%;
+  border: 1px solid map-get($colors, main-brown);
+  border-radius: 10px;
+  margin: 0 auto;
 }
 
 .about p {
-  background-color: map-get($colors, main-grey);
-  color: map-get($colors, main-white);
+  background-color: map-get($colors, main-white);
+  color: map-get($colors, main-grey);
   padding: 1rem;
-  border-radius: 10px;
+  line-height: 1.6;
 }

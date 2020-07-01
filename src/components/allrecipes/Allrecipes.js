@@ -16,7 +16,6 @@ const AllRecipes = () => {
   const [activePage, setActivePage] = useState(15);
 
   const handleCheck = () => {
-    console.log(check);
     setCheck(!check);
     if (check) {
       appDispatch({ type: "toggleStaticData", value: "check" });
@@ -24,9 +23,13 @@ const AllRecipes = () => {
     }
   };
 
-  const filteredRecipes = appState.storeFilterRecipeIds?.map((id) =>
+  console.log(appState.filteredRecipeIds);
+
+  const filteredRecipes = appState.filteredRecipeIds?.map((id) =>
     appState.recipes.find((recipe) => recipe.id === id)
   );
+
+  console.log("showFR", filteredRecipes);
 
   return (
     <div>
@@ -43,13 +46,21 @@ const AllRecipes = () => {
         label="Including static data"
       />
       <p>
-        Yummie recipes found: <span>{appState.recipes.length}</span>
+        Recipes found:{" "}
+        <span>
+          {appState.filteredRecipeIds
+            ? appState.filteredRecipeIds.length
+            : appState.recipes.length}
+        </span>
       </p>
-      <ShowRecipes
-        recipes={
-          filteredRecipes !== undefined ? filteredRecipes : appState.recipes
-        }
-      />
+      <div className="flexWrap">
+        <ShowRecipes
+          recipes={
+            filteredRecipes !== undefined ? filteredRecipes : appState.recipes
+          }
+        />
+      </div>
+
       <div>
         <Pagination
           className="pagination"
@@ -65,15 +76,12 @@ const AllRecipes = () => {
 };
 
 const ShowRecipes = ({ recipes }) => {
-  return recipes.map((element, i) => (
-    <div key={i} className="recipe_container">
-      <Recipe {...element} />
-    </div>
-  ));
+  return recipes.map((element, i) => <Recipe key={i} {...element} />);
 };
 
 export const Recipe = ({ name, id, image }) => {
   const appDispatch = useContext(DispatchContext);
+  console.log(name);
 
   const handleDelete = () => {
     appDispatch({

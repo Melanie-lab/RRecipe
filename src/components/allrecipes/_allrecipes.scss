@@ -1,11 +1,19 @@
 @import "../../var";
 
+.flexWrap {
+  @include desktop {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
 .recipecard img {
   max-width: 100%;
   margin: 0;
 }
 
 .recipecard {
+  max-width: 380px;
   border: 1px solid map-get($colors, main-brown);
   border-radius: 5px;
   margin-top: 1rem;
@@ -16,6 +24,9 @@
   font-family: oregano;
   text-align: center;
   box-shadow: 2px 2px 4px map-get($colors, main-grey);
+  @include desktop {
+    margin: 0.75rem;
+  }
 }
 
 .card_icons {

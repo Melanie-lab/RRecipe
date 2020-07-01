@@ -23,13 +23,6 @@ const Searchbar = React.forwardRef((props, ref) => {
       }
       return acc;
     }, []);
-    /*  f = recipeData.filter((data) => {
-      return data.tag.filter((tags) => {
-        console.log(tags);
-        return tags.includes(searchinput) && tags.tag;
-      });
-    }); */
-    /*  setFilteredRecipeIds(f); */
     appDispatch({ type: "storeFilteredRecipeIds", value: f });
     history.push({
       pathname: "/recipes",

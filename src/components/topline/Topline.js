@@ -6,6 +6,7 @@ import MenuBtn from "../navbar/MenuBtn";
 import { CSSTransition } from "react-transition-group";
 import { useLockBodyScroll } from "react-use";
 import { toggleNavContext } from "../../layouts/Default";
+import NavBarDesktop from "../navbar/NavBarDesktop";
 
 const Topline = ({ setFilteredRecipes }) => {
   const { navVisible, setNavVisible } = useContext(toggleNavContext);
@@ -23,7 +24,9 @@ const Topline = ({ setFilteredRecipes }) => {
           className="searchbtn"
           onClick={() => setSearchVisible(!searchVisible)}
         ></button>
+        <Searchbar className="searchbar_desktop" />
       </header>
+      <NavBarDesktop />
       <CSSTransition
         nodeRef={searchRef}
         in={searchVisible}
@@ -38,6 +41,7 @@ const Topline = ({ setFilteredRecipes }) => {
           role="link"
           aria-label="search"
           setFilteredRecipes={setFilteredRecipes}
+          className="serachbar_mobile"
         />
       </CSSTransition>
       <Navbar role="link" aria-label="menu" setNavVisible={setNavVisible} />

@@ -6,15 +6,24 @@
 
 .searchbar {
   margin: 1rem 0;
-  width: 95%;
+  width: 98%;
+}
+
+.searchbar label {
+  @include desktop {
+    font-size: 0.75rem;
+  }
 }
 
 .searchbar input {
   margin-top: 0.2rem;
-  height: 31px;
+  height: 35px;
   width: 100%;
   border: 1px solid map-get($colors, main-brown);
   padding-left: 5px;
+  @include desktop {
+    font-size: 0.75rem;
+  }
 }
 
 .searchbar button {
@@ -29,6 +38,10 @@
   position: absolute;
   right: 5px;
   top: 7px;
+  @include desktop {
+    height: 15px;
+    width: 15px;
+  }
 }
 
 .inputwrapper {

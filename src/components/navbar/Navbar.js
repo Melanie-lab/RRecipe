@@ -7,7 +7,12 @@ import { useClickAway } from "react-use";
 
 const Navbar = () => {
   const { navVisible, setNavVisible } = useContext(toggleNavContext);
-  const fadeIn = useSpring({
+
+  const fadeInMobile = useSpring({
+    transform: navVisible ? `translate3d(0,0,0)` : `translate3d(-110%,0,0)`,
+  });
+
+  const fadeInDesktop = useSpring({
     transform: navVisible ? `translate3d(0,0,0)` : `translate3d(-110%,0,0)`,
   });
 
@@ -16,20 +21,26 @@ const Navbar = () => {
     setNavVisible(false);
   });
 
+  let vw = window.innerWidth;
+
   return (
-    <animated.div ref={ref} className="navlinks" style={fadeIn}>
+    <animated.div
+      ref={ref}
+      className="navlinks"
+      style={vw < 800 ? fadeInMobile : fadeInDesktop}
+    >
       <nav>
         <ul>
           <NaviLink to="/" linktext="Home" />
           <NaviLink to="/about" linktext="About" />
-          <hr></hr>
+          {/*  <hr></hr> */}
           <NaviLink to="/recipes" linktext="See all recipes" />
           <ul>
             <NaviLink to="/recipes/desert" linktext="Desert" />
             <NaviLink to="/recipes/maindish" linktext="Main dish" />
             <NaviLink to="/recipes/entree" linktext="Entrée" />
           </ul>
-          <hr></hr>
+          {/*  <hr></hr> */}
           <NaviLink to="/recipe/new" linktext="Add new recipe" />
         </ul>
       </nav>
