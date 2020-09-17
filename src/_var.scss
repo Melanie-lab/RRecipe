@@ -11,8 +11,8 @@ $fontsizes: (
   yummie: 1.75rem,
 );
 
-$tablet-width: 768px;
-$desktop-width: 800px;
+$tablet-width: 50000px; /* 768px; */
+$desktop-width: 50000px; /* 800px; */
 
 @mixin tablet {
   @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width -1 px}) {

@@ -12,19 +12,6 @@ nav {
   }
 }
 
-.dropdown {
-  background-color: inherit;
-  border: none;
-  background-image: url("dropdown.png");
-  background-size: 13px 10px;
-  background-position: right;
-  background-repeat: no-repeat;
-  min-width: 80px;
-  margin: auto 1.4rem;
-  padding: auto 2rem;
-  font-size: 0.75rem;
-}
-
 nav a {
   margin: 0 1.5rem;
   text-decoration: none;
@@ -38,6 +25,9 @@ nav a {
   color: black;
   display: flex;
   flex-direction: column;
+  align-self: flex-start;
+  align-content: flex-start;
+  align-items: flex-start;
 }
 
 .recipesDropDownDiv {
@@ -46,4 +36,17 @@ nav a {
 
 .recipesDropDownDiv a {
   margin: 0;
+}
+
+.dropdown {
+  background-color: inherit;
+  border: none;
+  background-image: url("dropdown.png");
+  background-size: 13px 10px;
+  background-position: right;
+  background-repeat: no-repeat;
+  min-width: 80px;
+  padding: 0 2rem;
+  margin: 0;
+  font-size: 0.75rem;
 }

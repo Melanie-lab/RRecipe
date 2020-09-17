@@ -12,7 +12,6 @@ body {
   /*   color: map-get($colors, main-grey); */
   overflow-y: scroll;
   overflow-x: hidden;
-  width: 100%;
 }
 
 code {
@@ -22,10 +21,13 @@ code {
 
 .ui {
   background-color: map-get($colors, $key: main-white);
+  max-width: 360px;
+  margin: 0 auto;
   @include desktop {
     background-color: map-get($colors, main-brown);
     margin: 0;
     padding: 0;
+    
   }
 }
 
